@@ -31,4 +31,4 @@ Finally, </p>
 Add anything else you would like us to know 
 
 ## App Demo 
-Link to GitHub project (sepaivaluna.github.io)
+[Led Zeppelin Game] (sepaivaluna.github.io)
