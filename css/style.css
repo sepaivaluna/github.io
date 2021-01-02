@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Gloria Hallelujah', serif;
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/abfbb793-2801-49f3-b9fd-90708035c1f0/d7zcwt3-340f8c02-67bc-4d9e-82f0-5e79c9e0f8b4.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYWJmYmI3OTMtMjgwMS00OWYzLWI5ZmQtOTA3MDgwMzVjMWYwXC9kN3pjd3QzLTM0MGY4YzAyLTY3YmMtNGQ5ZS04MmYwLTVlNzljOWUwZjhiNC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.rtS9iiej6ZWOvGD-QsmlRhvi2_mGgPq_0fwkkllB_Yo');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 95vh;
+    width: 100vw;
+    margin: 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.game-board {
+    background-color: rgba(200, 200, 200, 0.473);
+    height: 70vh;
+    text-align: center;
+    border: 1px solid white;
+    margin: 8px;
+}
+
+#main-game-div {
+    margin: 10px 75px 0 75px;
+}
+
+#title {
+    margin: 40px;
+}
+
+div {
+    margin: 10px;
+}
+
+#button-div {
+   height: 50vh;
+}
+
+.players {
+    font-size: 3.5em;
+    margin: 35px;
+    background-color: rgba(200, 200, 200, 0.473);
+}
+
+#reset-button {
+    font-size: 2em;
+    margin: 35px;
+    background-color: rgba(200, 200, 200, 0.582);
+}
+#help-button {
+    font-size: 2em;
+    margin: 35px;
+    background-color: rgba(200, 200, 200, 0.582);
+}
+
+.overlay{
+    opacity:0.8;
+    background-color: rgba(0,0,0,.9);
+    position:fixed;
+    color: white;
+    width:100%;
+    height:100%;
+    top: 25px;
+    left: 25px;
+}
+
+input {
+    font-size: 2rem;
+    background-color: rgba(200, 200, 200, 0.582);
+    color: white;
+    font-weight: lighter;
+}
+
+::placeholder {
+    font-size: 2rem;
+    color: white;
+    font-weight: lighter;
+}
+
+#howTo {
+    position: fixed;
+    top: 10px;
+    left: 40px;
+    right: 40px;
+    bottom: 10px;
+    background-color: rgba(0,0,0,.9);
+    padding: 30px;
+    color: white;
+}
+
+#exit-button {
+    font-size: 2rem;
+}
+
+#exit-button:hover {
+    background-color: white;
+    color: red;
+}
+
+
+/* use this for when you want to add an animation to the text: font-effect-fire-animation */
