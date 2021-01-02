@@ -30,7 +30,7 @@
 
 <body>
     <div id="title" class="text-center">
-        <h1 class="font-effect-3d-float font-effect-fire-animation display-2">THE LED ZEPPELIN DRINKING GAME</h1>
+        <h1 id="game-name" class="font-effect-3d-float font-effect-anaglyph display-2">THE LED ZEPPELIN DRINKING GAME</h1>
     </div>
     
     <div id="main-game-div" class="d-flex justify-content-center"> 
@@ -39,11 +39,36 @@
             <button id="two-player" class="btn btn-lg btn-outline-warning players">Two Player</button>
         </div>
         
-        <div id="player-one-input" class="game-board container container board"><input type="text" placeholder="Player One..." class="text-center "></div>
+        <div id="player-one-board" class="game-board container board" style="position:relative"> 
+
+            <input id="player-one-input" type="text" placeholder="Choose your name" class="text-center" style="margin-top: 4px;">
+
+            <div id="health" class="container" style="background-color: rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
+                <p class="h3">Health</p>
+                <!-- Give credit to https://www.html.am/html-codes/character-codes/html-heart-code.cfm for the hearts-->
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+                <span class="p-2 heart">&hearts;</span>
+
+            </div>
+        </div>
         
-        <div id="board" class="game-board container container board">Board</div>
+        <div id="board" class="game-board container board" style="position:relative">Board</div>
         
-        <div id="player-two-input" class="game-board container board"></div>
+        <div id="player-two-input" class="game-board container board" style="position: relative;"></div>
         
     </div>
     
@@ -66,9 +91,10 @@
         </div>
         <div class="card col-4" style="width:16rem; height:22rem;">
             <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" style="height: 12rem; position: relative;margin-top: 10px;" alt="Robert Plant Rum">
-            <div class="card-body">
-                <h5 class="card-title text-dark" style="margin:0 auto;">Robert Plant Rum</h5>
-                    <p class="h6 card-text text-body">Use this card to add 3 alcohol points to your opponent</p>
+            <div>
+                <div class="text-dark" style="margin: 0; font-size: 23px; margin-bottom: 9px; font-weight: bolder;">Robert Plant Rum</div>
+                    <p class="card-text text-body" style="font-size: 16px;">Use this card to add 3 alcohol points to your opponent!
+                    </p>
                 </div>
             </div>
         </div>

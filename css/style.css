@@ -41,22 +41,31 @@ div {
    height: 50vh;
 }
 
+.btn {
+    font-size: 4rem;
+}
+.btn:hover {
+    font-size: 4.2rem;
+}
+
 .players {
     font-size: 3.5em;
     margin: 35px;
     background-color: rgba(200, 200, 200, 0.473);
 }
 
-#reset-button {
+#reset-button, #help-button {
     font-size: 2em;
     margin: 35px;
     background-color: rgba(200, 200, 200, 0.582);
 }
-#help-button {
-    font-size: 2em;
+#help-button:hover, #reset-button:hover {
+    font-size: 3em;
     margin: 35px;
     background-color: rgba(200, 200, 200, 0.582);
 }
+
+
 
 .overlay{
     opacity:0.8;
@@ -94,13 +103,36 @@ input {
 }
 
 #exit-button {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 #exit-button:hover {
     background-color: white;
     color: red;
+    font-size: 4rem;
 }
+
+.heart {
+    font-size: 225%;
+    color: red;
+}
+
+.heart:hover {
+    color:white;
+}
+
+.board {
+    min-width: 500px;
+    min-height: 700px;
+    max-width: 500px;
+    max-height: 700px;
+}
+
+/* #health {
+    position: relative;
+    bottom: 0;
+    left: 0;
+} */
 
 
 /* use this for when you want to add an animation to the text: font-effect-fire-animation */
