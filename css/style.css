@@ -101,7 +101,10 @@ input {
     background-color: rgba(0,0,0,.9);
     padding: 30px;
     color: white;
+  
 }
+
+
 
 #exit-button {
     font-size: 3rem;
@@ -130,15 +133,28 @@ input {
 }
 
 #health-screenshot {
-    width: 30%;
-    height: 30%;
+    width: 70%;
+    height: 50%;
+    margin-top: 40px;
+    border-radius: 3rem;
 }
 
 #health-screenshot:hover {
-    width: 35%;
-    height: 35%;
+    width: 75%;
+    height: 55%;
 }
 
 #howto-text {
-    line-height: 130%;
+    line-height: 140%;
+}
+
+.card {
+    background-color: tan;
+    background-image: linear-gradient(to top, tan, lightblue);
+    border-radius: 1.25rem;
+    color: rgb(7, 7, 133);
+}
+
+#example {
+    margin-left: 100px;
 }
