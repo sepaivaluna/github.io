@@ -38,32 +38,37 @@ const $gameBoard = $('.board');
 const $resetButton = $('#reset-button');
 const $helpButton = $('#help-button');
 const $howTo = $('#howTo');
-const $playerTwoInput = $('#player-two-input');
+const $playerTwoDiv = $('#player-two-div');
 const $exitButton = $('#exit-button');
 const $playerOneInput = $('#player-one-input')
+const $playerTwoInput = $('#player-two-input')
+let isTwoPlayer = false;
 
 $(function () {
 
     // NOTE the (re)start of the game
     const gameRestart = function () {
         
-        $howTo.hide();
+        // $howTo.hide();
         $playerOneInput.val('');
-        $playerTwoInput.empty();
+        $playerTwoDiv.empty();
         $gameBoard.hide();
         $resetButton.hide();
         $onePlayerSelection.show();
         $twoPlayerSelection.show();
+        isTwoPlayer = false;
+        $('#board-messages').empty();
     }
     
     // NOTE the option to pick between one player or two player
     const onePlayerSelection = function () {
+    
         $gameBoard.show();
         $onePlayerSelection.hide();
         $twoPlayerSelection.hide();
         $resetButton.show();
-        $playerTwoInput.append(`<p style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter;">CPU</p>`)
-        $playerTwoInput.append(`<div id="health" class="container" style="background-color:rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
+        $playerTwoDiv.append(`<p style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter;">CPU</p>`)
+        $playerTwoDiv.append(`<div id="health" class="container" style="background-color:rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
         <p class="h3">Health</p>
         <span class="p-2 heart">&hearts;</span>
             <span class="p-2 heart">&hearts;</span>
@@ -81,21 +86,18 @@ $(function () {
             <span class="p-2 heart">&hearts;</span>
             <span class="p-2 heart">&hearts;</span>
             <span class="p-2 heart">&hearts;</span>
-
-    </div>`)
-    // font-size: 2rem;
-    // background-color: rgba(200, 200, 200, 0.582);
-    // color: white;
-    // font-weight: lighter;
+        </div>`)
+        pickAName();
     }
 
     const twoPlayerSelection = function () {
+
+        isTwoPlayer = true;
         $gameBoard.show();
         $onePlayerSelection.hide();
         $twoPlayerSelection.hide();
         $resetButton.show();
-
-        $playerTwoInput.append(`<input id="player-two-input" type="text" placeholder="Choose your name P2" class="text-center" style="margin-top: 4px;"><div id="health" class="container" style="background-color: rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
+        $playerTwoDiv.append(`<input id="player-two-input" type="text" placeholder="Choose your name P2" class="text-center" style="margin-top: 4px;"><div id="health" class="container" style="background-color: rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
         <p class="h3">Health</p>
         <span class="p-2 heart">&hearts;</span>
         <span class="p-2 heart">&hearts;</span>
@@ -113,8 +115,9 @@ $(function () {
         <span class="p-2 heart">&hearts;</span>
         <span class="p-2 heart">&hearts;</span>
         <span class="p-2 heart">&hearts;</span>
-
     </div>`)
+        pickAName();
+
     }
 
     const helpButton = function () {
@@ -124,6 +127,14 @@ $(function () {
 
     const exitInstruction = function () {
         $howTo.hide();
+    }
+
+    const pickAName = function () {
+        if (!isTwoPlayer) {
+            return $('#board-messages').append(`<p class="h3" style="margin-top: 10px;">Quick player! Pick a Rock and Roll name!`);
+        } else {
+            return $('#board-messages').append(`<p class="h3" style="margin-top: 10px;">Quick players! Pick a cool name!`);
+        }
     }
 
     $onePlayerSelection.on('click', onePlayerSelection);

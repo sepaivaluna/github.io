@@ -66,9 +66,11 @@
             </div>
         </div>
         
-        <div id="board" class="game-board container board" style="position:relative">Board</div>
+        <div id="board-messages" class="game-board container board" style="position: relative;">
+        </div>
         
-        <div id="player-two-input" class="game-board container board" style="position: relative;"></div>
+        <div id="player-two-div" class="game-board container board" style="position: relative;">
+        </div>
         
     </div>
     
@@ -82,19 +84,26 @@
     
         <div class="display-3 font-effect-neon">HOW TO PLAY</div><br><br>
         <div class="row justify-content-around">
-        <div class="h2 col-4">To begin, you and your opponent will both begin with <span class="text-danger">20 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br><br><br>
-
-            
+            <div id="howto-text" class="h2 col-5">To begin, you and your opponent will both begin with <span class="text-danger">20 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br><br><br>
+                
             You will select a card from your hand. Whatever you choose will impact your opponent directly. For example these could be your cards:<br><br><br>
             
             Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponents Health and Alcohol level to equal. Once that happens <strong><em>you WIN!</em></strong><br><br><br>
-        </div>
-        <div class="card col-4" style="width:16rem; height:22rem;">
-            <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" style="height: 12rem; position: relative;margin-top: 10px;" alt="Robert Plant Rum">
-            <div>
-                <div class="text-dark" style="margin: 0; font-size: 23px; margin-bottom: 9px; font-weight: bolder;">Robert Plant Rum</div>
-                    <p class="card-text text-body" style="font-size: 16px;">Use this card to add 3 alcohol points to your opponent!
-                    </p>
+
+            </div>
+            <div class="col-4">
+                <img id="health-screenshot" src="health-screenshot.png" alt="Health Meter">
+                <div class="card col-4" style="width:16rem; height:22rem;">
+
+                    <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" style="height: 12rem; position: relative;margin-top: 10px;" alt="Robert Plant Rum">
+                    <div>
+
+                        <div class="text-dark" style="margin: 0; font-size: 23px; margin-bottom: 9px; font-weight: bolder;">Robert Plant Rum
+                        </div>
+
+                        <p class="card-text text-body" style="font-size: 16px;">Use this card to add 3 alcohol points to your opponent!
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
