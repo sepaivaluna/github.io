@@ -43,6 +43,8 @@
 
             <input id="player-one-input" type="text" placeholder="Choose your name" class="text-center" style="margin-top: 4px;">
 
+            <div id="p1-cards"></div>
+
             <div id="health" class="container" style="background-color: rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
                 <p class="h3">Health</p>
                 <!-- Give credit to https://www.html.am/html-codes/character-codes/html-heart-code.cfm for the hearts-->
@@ -80,15 +82,15 @@
 
     </div>
     
-    <div id="howTo" class="text-center">
+    <div id="howTo" class="text-center" style="position: absolute;">
     
-        <div class="display-3 font-effect-neon">
+        <div class="display-3 font-effect-neon" style="position: relative;">
             HOW TO PLAY
         </div>
         <br><br>
         
-        <div class="row justify-content-around">
-            <div id="howto-text" class="h2 col-3">To begin, you and your opponent will both begin with <span class="text-danger">20 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br>
+        <div class="row justify-content-around" style="position: relative;">
+            <div id="howto-text" class="h2 col-3">To begin, you and your opponent will both begin with <span class="text-danger">16 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br>
                 
                 
             <img id="health-screenshot" src="health-screenshot.png" alt="Health Meter">
@@ -102,19 +104,8 @@
             <div id="howto-text" class="h2 col-3">    
             You will select a card from your hand. Whatever you choose will impact your opponent directly. For example these could be your cards:
 
-                <!-- <div class="card" style="position: center;margin-left: 60px; margin-top: 40px;">
-
-                    <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" style="height: 12rem; width: 14rem; position: relative; margin-top: 10px; border-radius: 1.25rem;" alt="Robert Plant Rum">
-                    <div>
-
-                        <div class="text-dark" style="margin: 0; font-size: 23px; font-weight: bolder;">Robert Plant Rum
-                        </div>
-
-                        <p class="card-text text-body" style="font-size: 26px; margin-top: 16px;">Use this card to add 3 alcohol points to your opponent!
-                        </p>
-                    </div>
-                </div> -->
-
+            <br><br>
+            
                 <div id="example" class="card" style="width: 16rem;">
                     <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" alt="example" style="border-radius: 1.25rem;">
                     <div class="card-body" style="line-height: 50%; margin: 0 auto">
@@ -123,21 +114,24 @@
                 </div>
                 
 
-                <br>
-
-                <span class="lead">There are a total of 15 different types of cards that you can potentially choose from!</span>
+                <span class="lead" style="line-height: 100%;">There are a total of 15 different types of cards that you can potentially choose from!</span>
 
 
             </div>
 
             <div id="howto-text" class="h2 col-3">
-            Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponents Health and Alcohol level to equal. Once that happens <strong><em>you WIN!</em></strong>
+            Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponents Health and Alcohol level to equal. Once that happens the game ends!
+
+            
+                <div class="d-flex justify-content-center align-items-center" style="margin: 200px;">
+                    <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">EXIT</button>
+                </div>
+
             </div>
 
         </div>
             
-        </div>
-        <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">EXIT</button>
+        
     </div>
     
 </body>

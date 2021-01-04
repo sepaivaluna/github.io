@@ -13,8 +13,8 @@ body {
     height: 95vh;
     width: 100vw;
     margin: 20px;
-    max-width: 100%;
-    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     font-weight: lighter;
 }
 
@@ -101,7 +101,6 @@ input {
     background-color: rgba(0,0,0,.9);
     padding: 30px;
     color: white;
-  
 }
 
 
@@ -137,11 +136,7 @@ input {
     height: 50%;
     margin-top: 40px;
     border-radius: 3rem;
-}
-
-#health-screenshot:hover {
-    width: 75%;
-    height: 55%;
+    position: relative;
 }
 
 #howto-text {
@@ -158,3 +153,33 @@ input {
 #example {
     margin-left: 100px;
 }
+
+#board-messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* give credits to css-tricks https://css-tricks.com/snippets/css/typewriter-effect/*/
+
+#typewriter {
+    overflow: hidden; 
+    white-space: normal; /*Keeps the content on a single line*/
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; 
+    position: relative;
+    animation: 
+      slidein 2s;
+      /* blink-caret .5s step-end 10; */
+  }
+  
+  @keyframes slidein {
+    from { margin-top: 100% }
+    to { margin-top: 0}
+  }
+  
+  /* The typewriter cursor effect */
+  /* @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+  } */

@@ -43,13 +43,27 @@ const $exitButton = $('#exit-button');
 const $playerOneInput = $('#player-one-input')
 const $playerTwoInput = $('#player-two-input')
 let isTwoPlayer = false;
+let choseName = false;
+
+
+// const cards = [card1, card2, card3, card4, card5, card6, card7, card8];
+
+const card1 = `<div class="card" style="width: 25%;height: auto;">
+                    <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" alt="example" style="border-radius: 1.25rem;">
+                    <div class="card-body" style="line-height: 50%; margin: 0 auto">
+                        <p class="card-text"><strong class="h4"><u>Robert Plant Rum</u></strong><br><span class="h5">Use this card to give 3 alcohol to your rival!</span></p>
+                    </div>
+                </div>`;
+
+
+
 
 $(function () {
 
     // NOTE the (re)start of the game
     const gameRestart = function () {
         
-        // $howTo.hide();
+        $howTo.hide();
         $playerOneInput.val('');
         $playerTwoDiv.empty();
         $gameBoard.hide();
@@ -59,10 +73,16 @@ $(function () {
         isTwoPlayer = false;
         $('#board-messages').empty();
     }
+
+    const dealCard = function () {
+        // let card = Math.floor(Math.random() * cards.length);
+        return $('#p1-cards').append(card1);
+    }
     
     // NOTE the option to pick between one player or two player
     const onePlayerSelection = function () {
-    
+        
+        // choseName = false;
         $gameBoard.show();
         $onePlayerSelection.hide();
         $twoPlayerSelection.hide();
@@ -88,10 +108,13 @@ $(function () {
             <span class="p-2 heart">&hearts;</span>
         </div>`)
         pickAName();
+        doAsISay();
+
     }
 
     const twoPlayerSelection = function () {
-
+        
+        // choseName = true; 
         isTwoPlayer = true;
         $gameBoard.show();
         $onePlayerSelection.hide();
@@ -117,6 +140,7 @@ $(function () {
         <span class="p-2 heart">&hearts;</span>
     </div>`)
         pickAName();
+        doAsISay();
 
     }
 
@@ -131,19 +155,46 @@ $(function () {
 
     const pickAName = function () {
         if (!isTwoPlayer) {
-            return $('#board-messages').append(`<p class="h3" style="margin-top: 10px;">Quick player! Pick a Rock and Roll name!`);
+            return $('#board-messages').append(`<p id="typewriter" class="h1" style="margin-top: 10px;">Quick player! Pick a Rock and Roll name!<br><br>
+            
+            Only once you're <u><em>done</em></u> doing so click the button below to deal your cards!
+            <br><br>
+
+            <button id="deal-button" class="btn btn-lg btn-success" style="font-size: 32px;">DEAL CARDS</button>
+
+            </p>
+            `);
         } else {
-            return $('#board-messages').append(`<p class="h3" style="margin-top: 10px;">Quick players! Pick a cool name!`);
+            return $('#board-messages').append(`<p id="typewriter" class="h1" style="margin-top: 10px;">Quick players! Pick a cool name! <br><br>
+            
+            Only once you're <u><em>done</em></u> doing so click the button below to deal your cards!
+            <br><br>
+
+            <button id="deal-button" class="btn btn-lg btn-success" style="font-size: 32px;">DEAL CARDS</button>
+
+            </p>
+            `);
         }
     }
+
+    const doAsISay = function () {
+        if (!choseName) {
+            return $('#board-messages').append(`<p>PLEASE CHOOSE A NAME</p>`)
+        } else {
+            return dealCard();
+        }
+    }
+
 
     $onePlayerSelection.on('click', onePlayerSelection);
     $twoPlayerSelection.on('click', twoPlayerSelection);
     $resetButton.on('click', gameRestart);
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
+    $('#deal-button').on('click', doAsISay());
     
     gameRestart();
 
 });
 
+// sergio, for tomorrow please revise the deal button and also look over the doasisay() function, it should only return if false, connect the input.val() to the function. Goodnight;
