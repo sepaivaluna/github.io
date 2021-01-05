@@ -82,44 +82,74 @@
 
     </div>
     
-    <div id="howTo" class="text-center" style="position: absolute;">
+    <div id="howTo" class="text-center">
     
-        <div class="display-3 font-effect-neon" style="position: relative;">
+        <div class="display-3 font-effect-neon">
             HOW TO PLAY
         </div>
+
         <br><br>
         
-        <div class="row justify-content-around" style="position: relative;">
-            <div id="howto-text" class="h2 col-3">To begin, you and your opponent will both begin with <span class="text-danger">16 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br>
+        <div class="row justify-content-around" style="position: absolute;">
+            <div id="first-col" class="howto-text h2 col-3">To begin, you and your opponent will both begin with <span class="text-danger">16 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br>
                 
                 
-            <img id="health-screenshot" src="health-screenshot.png" alt="Health Meter">
+            <img id="health-screenshot" src="health-screenshot.png" alt="Health Meter" style="margin: 40px 40px 0 40px;">
 
-            <br><br>
+            <br>
 
-            <span class="lead">As you can see, you have a total of 16 hearts!</span>
+            You can see, you have a total of 16 hearts!
 
             </div>
              
-            <div id="howto-text" class="h2 col-3">    
-            You will select a card from your hand. Whatever you choose will impact your opponent directly. For example these could be your cards:
+            <div id="second-col" class="howto-text h2 col-3">    
+            You will select a card from your hand. Whatever you choose will impact your opponent directly. For example this could be your card (Hint: <u class="text-warning">hover</u> over it):
 
             <br><br>
-            
-                <div id="example" class="card" style="width: 16rem;">
-                    <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" alt="example" style="border-radius: 1.25rem;">
-                    <div class="card-body" style="line-height: 50%; margin: 0 auto">
-                      <p class="card-text"><strong class="h4"><u>Robert Plant Rum</u></strong><br><span class="h5">Use this card to give 3 alcohol to your rival!</span></p>
+
+                <!-- <div id="example" class="card-container" style="width: 235px; height: 250px">
+                    <div class="theCard" style="margin: 0;">
+                        <div class="card-title"><strong class="h2"><u>Robert Plant Rum</u></strong>
+                        </div>
+                        <div class="card-info h3">Use this card to give 3 alcohol to your rival!</div>
+                    </div>
+                </div> -->
+
+                <!-- <div id="example" class="card-flip">
+                    <div class="theCard">
+                        <div class="theFront">
+                            <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width: 235px; height: 250px;">
+                        </div>
+                        <div class="theBack">
+                            <h2><u>Robert Plant Rum</u></strong>
+                            </h2>
+                            <p class="card-info h3">Use this card to give 3 alcohol to your rival!
+                            </p>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width:235px;height:250px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h2 style="padding-top: 20px;"><u>Robert Plant Rum</u></strong>
+                            </h2>
+                            <p class="card-info h3">Use this card to give 3 alcohol to your rival!
+                            </p>
+                        </div>
                     </div>
                 </div>
-                
+                  
 
-                <span class="lead" style="line-height: 100%;">There are a total of 15 different types of cards that you can potentially choose from!</span>
+                There are a total of <span class="text-primary">10</span> different types of cards that you can potentially choose from!
 
 
             </div>
 
-            <div id="howto-text" class="h2 col-3">
+            <div id="third-col" class="howto-text h2 col-3">
             Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponents Health and Alcohol level to equal. Once that happens the game ends!
 
             

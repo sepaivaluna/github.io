@@ -93,11 +93,13 @@ input {
 }
 
 #howTo {
-    position: fixed;
+    position: absolute;
     top: 10px;
     left: 40px;
     right: 40px;
     bottom: 10px;
+    min-width: 1900px;
+    min-height: 1200px;
     background-color: rgba(0,0,0,.9);
     padding: 30px;
     color: white;
@@ -131,34 +133,85 @@ input {
     max-height: 700px;
 }
 
-#health-screenshot {
-    width: 70%;
-    height: 50%;
-    margin-top: 40px;
-    border-radius: 3rem;
-    position: relative;
-}
-
-#howto-text {
-    line-height: 140%;
-}
-
-.card {
-    background-color: tan;
-    background-image: linear-gradient(to top, tan, lightblue);
-    border-radius: 1.25rem;
-    color: rgb(7, 7, 133);
-}
-
-#example {
-    margin-left: 100px;
-}
-
 #board-messages {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
+#health-screenshot {
+    width: 75%;
+    height: 33%;
+    border-radius: 3rem;
+    position: relative;
+}
+
+.howto-text {
+    line-height: 140%;
+}
+
+
+.flip-card {
+    align-self: center;
+}
+
+
+#second-col, #first-col, #third-col {
+    display: flex;
+    flex-direction: column;
+}
+
+span.text-primary, span.text-danger, span.text-success, u.text-warning {
+    display: contents;
+}
+
+/* give credits to https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card for the card flip */
+
+ .card-flip {
+    background-color: transparent;
+    position: relative;
+ }
+
+.flip-card {
+    background-color: transparent;
+    width: 235px;
+    height: 250px;
+    perspective: 1000px;
+    margin-bottom: 60px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
+  }
 
 /* give credits to css-tricks https://css-tricks.com/snippets/css/typewriter-effect/*/
 
@@ -169,9 +222,9 @@ input {
     letter-spacing: .15em; 
     position: relative;
     animation: 
-      slidein 2s;
-      /* blink-caret .5s step-end 10; */
-  }
+    slidein 2s;
+    /* blink-caret .5s step-end 10; */
+}
   
   @keyframes slidein {
     from { margin-top: 100% }

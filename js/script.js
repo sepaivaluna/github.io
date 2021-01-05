@@ -63,7 +63,7 @@ $(function () {
     // NOTE the (re)start of the game
     const gameRestart = function () {
         
-        $howTo.hide();
+        // $howTo.hide();
         $playerOneInput.val('');
         $playerTwoDiv.empty();
         $gameBoard.hide();
