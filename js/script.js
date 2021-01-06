@@ -32,169 +32,146 @@ reset the game
   to reset the game we will call back the function reset game again
      */
     
-const $onePlayerSelection = $('#one-player');
-const $twoPlayerSelection = $('#two-player');
-const $gameBoard = $('.board');
-const $resetButton = $('#reset-button');
-const $helpButton = $('#help-button');
-const $howTo = $('#howTo');
-const $playerTwoDiv = $('#player-two-div');
-const $exitButton = $('#exit-button');
-const $playerOneInput = $('#player-one-input')
-const $playerTwoInput = $('#player-two-input')
-let isTwoPlayer = false;
-let choseName = false;
+    
+const cards2 = [
+    {
+        img: 'https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg',
+        title: 'Robert Plant Rum',
+        description: 'Use this card to give 3 alcohol to your rival!',
+    },
 
+    {
+        img: "https://lh3.googleusercontent.com/proxy/jnK0A12ezD4Ti6v4NKsvr3APUnpETu44QjxyAI67k5h-IjrAIy43-LhKJp5bLKpHx77HqudbL7_lwiz9wZrPN0ozCegAvp5N9W-ob4N7dawHsz8YiZHSENHXVcPtyQ",
+        title: 'Jimmy Page Jug',
+        description: 'Use this card to give 4 alcohol to your rival!',
+    },
 
-// const cards = [card1, card2, card3, card4, card5, card6, card7, card8];
+    {
+        img: 'https://i.pinimg.com/originals/b0/2b/b1/b02bb1a0bd854e89c55e15ef17a82163.jpg',
+        title: 'John Bonham Jack',
+        description: 'Use this card to give 2 alcohol to your rival!',
+    },
+    
+    {
+        img: 'https://paulkingart.com/wp-content/uploads/2018/01/John-Paul-Jones_PWK.jpg',
+        title: 'John Paul Jones',
+        description: 'Use this card to give 2 alcohol to your rival!',
+    },
 
-const card1 = `<div class="card" style="width: 25%;height: auto;">
-                    <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" class="card-img-top" alt="example" style="border-radius: 1.25rem;">
-                    <div class="card-body" style="line-height: 50%; margin: 0 auto">
-                        <p class="card-text"><strong class="h4"><u>Robert Plant Rum</u></strong><br><span class="h5">Use this card to give 3 alcohol to your rival!</span></p>
-                    </div>
-                </div>`;
+    {
+        img: 'https://cdn.dribbble.com/users/179241/screenshots/2846846/chris-fernandez-motto-1.png?compress=1&resize=400x300',
+        title: 'Finish the bottle!',
+        description: 'Use this card to give 5 alcohol to your rival!',
+    },
 
+    {
+        img: 'https://arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/OCR3UJQMPBHOBO77L26P5G3CLM.jpg',
+        title: 'Water',
+        description: 'Use this card to give 0 alcohol to your rival!',
+    },
 
+    {
+        img: 'https://image.shutterstock.com/image-illustration/cartoon-england-elements-set-on-600w-333033137.jpg',
+        title: 'London Drink',
+        description: 'Use this card to give 1 alcohol to your rival!',
+    },
 
+    {
+        img: 'https://previews.123rf.com/images/miceking/miceking1604/miceking160400018/54822330-beer-mug-cartoon-with-foam.jpg',
+        title: 'Beer',
+        description: 'Use this card to give 1 alcohol to your rival!',
+    },
 
+    {
+        img: 'https://cdn2.vectorstock.com/i/thumb-large/27/56/bottle-vodka-icon-cartoon-style-vector-7722756.jpg',
+        title: 'Vodka',
+        description: 'Use this card to give 2 alcohol to your rival!',
+    },
+
+    {
+        img: 'https://image.shutterstock.com/image-vector/vector-cartoon-illustration-tequila-bottle-260nw-1414483793.jpg',
+        title: 'Tequila',
+        description: 'Use this card to give 4 alcohol to your rival!',
+    },
+]
+   
+//   `<div class="flip-card" style="position:relative">
+//     <div class="flip-card-inner">
+//     <div class="flip-card-front">
+//     <img src="" alt="" style="width:235px;height:250px;">
+//     </div>
+//     <div class="flip-card-back">
+//     <h2 style="padding-top: 20px;"><u>Tequila</u></strong>
+//     </h2>
+//     <p class="</p>
+//     </div>
+//     </div>
+//     </div>`
+    
+    const $playGame = $('#play-game');
+    const $gameBoard = $('.board');
+    const $resetButton = $('#reset-button');
+    const $helpButton = $('#help-button');
+    const $howTo = $('#howTo');
+    const $exitButton = $('#exit-button');
+    const $playerOneInput = $('#player-one-input');
+    const $playButton = $('#play-button');
+
+    
+    
 $(function () {
-
-    // NOTE the (re)start of the game
-    const gameRestart = function () {
+    
+    // NOTE the start of the game
+    const gameStart = function () {
         
-        // $howTo.hide();
+        $howTo.hide();
         $playerOneInput.val('');
-        $playerTwoDiv.empty();
         $gameBoard.hide();
         $resetButton.hide();
-        $onePlayerSelection.show();
-        $twoPlayerSelection.show();
-        isTwoPlayer = false;
-        $('#board-messages').empty();
-    }
-
-    const dealCard = function () {
-        // let card = Math.floor(Math.random() * cards.length);
-        return $('#p1-cards').append(card1);
+        $playGame.show();
+    
+        
     }
     
     // NOTE the option to pick between one player or two player
-    const onePlayerSelection = function () {
+    const startGame = function () {
         
-        // choseName = false;
         $gameBoard.show();
-        $onePlayerSelection.hide();
-        $twoPlayerSelection.hide();
+        $playGame.hide();
         $resetButton.show();
-        $playerTwoDiv.append(`<p style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter;">CPU</p>`)
-        $playerTwoDiv.append(`<div id="health" class="container" style="background-color:rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
-        <p class="h3">Health</p>
-        <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-            <span class="p-2 heart">&hearts;</span>
-        </div>`)
-        pickAName();
-        doAsISay();
-
-    }
-
-    const twoPlayerSelection = function () {
         
-        // choseName = true; 
-        isTwoPlayer = true;
-        $gameBoard.show();
-        $onePlayerSelection.hide();
-        $twoPlayerSelection.hide();
-        $resetButton.show();
-        $playerTwoDiv.append(`<input id="player-two-input" type="text" placeholder="Choose your name P2" class="text-center" style="margin-top: 4px;"><div id="health" class="container" style="background-color: rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
-        <p class="h3">Health</p>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-        <span class="p-2 heart">&hearts;</span>
-    </div>`)
-        pickAName();
-        doAsISay();
-
     }
-
+    
     const helpButton = function () {
         $howTo.show();
     }
     
-
+    
     const exitInstruction = function () {
         $howTo.hide();
     }
+    
+    const newCard = function () {
+        let card = Math.floor(Math.random() * cards2.length);
+        return cards2[card];
+    }
+    console.log(newCard());
 
-    const pickAName = function () {
-        if (!isTwoPlayer) {
-            return $('#board-messages').append(`<p id="typewriter" class="h1" style="margin-top: 10px;">Quick player! Pick a Rock and Roll name!<br><br>
-            
-            Only once you're <u><em>done</em></u> doing so click the button below to deal your cards!
-            <br><br>
+    const cpuCard = function () {
+        let card = Math.floor(Math.random() * cards2.length);
+        return cards2[card]
+    }
+    console.log(cpuCard())
+    
+    const restartGame = function () {
 
-            <button id="deal-button" class="btn btn-lg btn-success" style="font-size: 32px;">DEAL CARDS</button>
-
-            </p>
-            `);
-        } else {
-            return $('#board-messages').append(`<p id="typewriter" class="h1" style="margin-top: 10px;">Quick players! Pick a cool name! <br><br>
-            
-            Only once you're <u><em>done</em></u> doing so click the button below to deal your cards!
-            <br><br>
-
-            <button id="deal-button" class="btn btn-lg btn-success" style="font-size: 32px;">DEAL CARDS</button>
-
-            </p>
-            `);
-        }
     }
 
-    const doAsISay = function () {
-        if (!choseName) {
-            return $('#board-messages').append(`<p>PLEASE CHOOSE A NAME</p>`)
-        } else {
-            return dealCard();
-        }
-    }
-
-
-    $onePlayerSelection.on('click', onePlayerSelection);
-    $twoPlayerSelection.on('click', twoPlayerSelection);
-    $resetButton.on('click', gameRestart);
+    $playGame.on('click', startGame)
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
-    $('#deal-button').on('click', doAsISay());
+    $resetButton.on('click', restartGame);
     
-    gameRestart();
-
+    gameStart(); 
 });
 
-// sergio, for tomorrow please revise the deal button and also look over the doasisay() function, it should only return if false, connect the input.val() to the function. Goodnight;

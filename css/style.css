@@ -99,13 +99,11 @@ input {
     right: 40px;
     bottom: 10px;
     min-width: 1900px;
-    min-height: 1200px;
+    min-height: 1000px;
     background-color: rgba(0,0,0,.9);
     padding: 30px;
     color: white;
 }
-
-
 
 #exit-button {
     font-size: 3rem;
@@ -113,30 +111,23 @@ input {
 
 #exit-button:hover {
     background-color: white;
-    color: red;
+    color: green;
     font-size: 4rem;
 }
 
-.heart {
-    font-size: 225%;
-    color: red;
+#player-one-board, #player-two-div {
+    min-width: 800px;
+    min-height: 850px;
 }
 
-.heart:hover {
-    color:white;
-}
 
-.board {
-    min-width: 500px;
-    min-height: 700px;
-    max-width: 500px;
-    max-height: 700px;
-}
 
 #board-messages {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 500px;
+    min-height: 700px;
 }
 
 #health-screenshot {
@@ -151,9 +142,6 @@ input {
 }
 
 
-.flip-card {
-    align-self: center;
-}
 
 
 #second-col, #first-col, #third-col {
@@ -165,7 +153,12 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
     display: contents;
 }
 
+
 /* give credits to https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card for the card flip */
+
+.flip-card {
+    align-self: center;
+}
 
  .card-flip {
     background-color: transparent;
@@ -213,6 +206,10 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
     transform: rotateY(180deg);
   }
 
+  #p1-cards {
+      display: flex;
+  }
+
 /* give credits to css-tricks https://css-tricks.com/snippets/css/typewriter-effect/*/
 
 #typewriter {
@@ -228,7 +225,7 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
   
   @keyframes slidein {
     from { margin-top: 100% }
-    to { margin-top: 0}
+    to { margin-top: 1}
   }
   
   /* The typewriter cursor effect */
@@ -236,3 +233,5 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
     from, to { border-color: transparent }
     50% { border-color: orange }
   } */
+
+ 

@@ -35,44 +35,46 @@
     
     <div id="main-game-div" class="d-flex justify-content-center"> 
         <div id="button-div" class="d-flex flex-column justify-content-center">
-            <button id="one-player" class="btn btn-lg btn-outline-warning players">One Player</button>
-            <button id="two-player" class="btn btn-lg btn-outline-warning players">Two Player</button>
+            <button id="play-game" class="btn btn-lg btn-outline-warning players">Let's Play</button>
         </div>
         
         <div id="player-one-board" class="game-board container board" style="position:relative"> 
+            <div class="container d-flex justify-content-center">
+                <input id="player-one-input" type="text" placeholder="Choose your name" class="text-center" style="margin-top: 4px;">
+                <button id="p1-input-button"class="btn-lg btn-outline-warning">enter</button>
+            </div>
 
-            <input id="player-one-input" type="text" placeholder="Choose your name" class="text-center" style="margin-top: 4px;">
+            <!-- <button id="play-card" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin-top: 20px;">Play Card</button> -->
 
-            <div id="p1-cards"></div>
+            <div id="p1-cards" style="justify-content: center;"></div>
 
-            <div id="health" class="container" style="background-color: rgba(225,200,200,.5); width:300px; position:absolute; bottom: 0; left: 100px;">
-                <p class="h3">Health</p>
-                <!-- Give credit to https://www.html.am/html-codes/character-codes/html-heart-code.cfm for the hearts-->
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-                <span class="p-2 heart">&hearts;</span>
-
+            <div id="health" class="container" style="background-color: rgba(225,200,200,.5); position: absolute; bottom: 10px; left: 50px; width: 650px;">
+                <p class=h4>Your Health</p>
+                <meter id="player-health-remaining" value="20" min="0" max="20" style="width: 100%; height: 40px;">100%</meter>
             </div>
         </div>
         
         <div id="board-messages" class="game-board container board" style="position: relative;">
+            <p id="typewriter" class="h1" style="margin-top: 10px;">Quick player! Pick a Rock and Roll name!<br><br>
+            
+            Once you have selected your name, click Play Card to test your luck!
+            <br><br>
+            
+            <button id="play-card" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin-top: 20px;">Play Card</button>
+            </p>
         </div>
         
         <div id="player-two-div" class="game-board container board" style="position: relative;">
+            <p style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter;">CPU</p>
+            
+            <div id="p2-cards" style="justify-content: center;"></div>
+    
+            <div id="health" class="container" style="background-color: rgba(225,200,200,.5); position: absolute; bottom: 10px; left: 50px; width: 650px;">
+                <p class="h4">Opponent's Health</p>
+                <meter id="opponent-health-remaining" value="20" min="0" max="20" style="width: 100%; height: 40px;"></meter>
+             </div>
         </div>
+
         
     </div>
     
@@ -91,70 +93,43 @@
         <br><br>
         
         <div class="row justify-content-around" style="position: absolute;">
-            <div id="first-col" class="howto-text h2 col-3">To begin, you and your opponent will both begin with <span class="text-danger">16 Health</span> and <span class="text-success">0 Alcohol</span> level. This is what your meter will look like:<br>
+            <div id="first-col" class="howto-text h2 col-3">Are you ready to try your luck? Well in this game you can. You and your opponent will both begin with <span class="text-danger">16 Health</span>. This is what your meter will look like:<br>
                 
                 
             <img id="health-screenshot" src="health-screenshot.png" alt="Health Meter" style="margin: 40px 40px 0 40px;">
-
-            <br>
-
-            You can see, you have a total of 16 hearts!
-
             </div>
              
             <div id="second-col" class="howto-text h2 col-3">    
             You will select a card from your hand. Whatever you choose will impact your opponent directly. For example this could be your card (Hint: <u class="text-warning">hover</u> over it):
 
             <br><br>
-
-                <!-- <div id="example" class="card-container" style="width: 235px; height: 250px">
-                    <div class="theCard" style="margin: 0;">
-                        <div class="card-title"><strong class="h2"><u>Robert Plant Rum</u></strong>
-                        </div>
-                        <div class="card-info h3">Use this card to give 3 alcohol to your rival!</div>
-                    </div>
-                </div> -->
-
-                <!-- <div id="example" class="card-flip">
-                    <div class="theCard">
-                        <div class="theFront">
-                            <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width: 235px; height: 250px;">
-                        </div>
-                        <div class="theBack">
-                            <h2><u>Robert Plant Rum</u></strong>
-                            </h2>
-                            <p class="card-info h3">Use this card to give 3 alcohol to your rival!
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
                 
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width:235px;height:250px;">
-                        </div>
-                        <div class="flip-card-back">
-                            <h2 style="padding-top: 20px;"><u>Robert Plant Rum</u></strong>
-                            </h2>
-                            <p class="card-info h3">Use this card to give 3 alcohol to your rival!
-                            </p>
-                        </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width:235px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h2 style="padding-top: 20px;"><u>Robert Plant Rum</u></strong>
+                        </h2>
+                        <p class="card-info h3">Use this card to give 3 alcohol to your rival!
+                        </p>
                     </div>
                 </div>
+            </div>
                   
 
-                There are a total of <span class="text-primary">10</span> different types of cards that you can potentially choose from!
+                There are a total of <span class="text-primary">10</span> different types of cards that you can potentially get!
 
 
             </div>
 
             <div id="third-col" class="howto-text h2 col-3">
-            Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponents Health and Alcohol level to equal. Once that happens the game ends!
+            Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponent's Health to zero. Once that happens the game ends!
 
             
-                <div class="d-flex justify-content-center align-items-center" style="margin: 200px;">
-                    <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">EXIT</button>
+                <div style="margin: 100px;">
+                    <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">Exit</button>
                 </div>
 
             </div>
