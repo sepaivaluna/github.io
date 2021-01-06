@@ -206,13 +206,13 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
     transform: rotateY(180deg);
   }
 
-  #p1-cards {
+  #p1-cards, #p2-cards {
       display: flex;
   }
 
 /* give credits to css-tricks https://css-tricks.com/snippets/css/typewriter-effect/*/
 
-#typewriter {
+#slideIn {
     overflow: hidden; 
     white-space: normal; /*Keeps the content on a single line*/
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
@@ -220,6 +220,7 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
     position: relative;
     animation: 
     slidein 2s;
+    line-height: 150%;
     /* blink-caret .5s step-end 10; */
 }
   

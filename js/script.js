@@ -33,103 +33,106 @@ reset the game
      */
     
     
-const cards2 = [
+const CARDS = [
     {
         img: 'https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg',
         title: 'Robert Plant Rum',
-        description: 'Use this card to give 3 alcohol to your rival!',
+        damage: 3,
     },
 
     {
         img: "https://lh3.googleusercontent.com/proxy/jnK0A12ezD4Ti6v4NKsvr3APUnpETu44QjxyAI67k5h-IjrAIy43-LhKJp5bLKpHx77HqudbL7_lwiz9wZrPN0ozCegAvp5N9W-ob4N7dawHsz8YiZHSENHXVcPtyQ",
         title: 'Jimmy Page Jug',
-        description: 'Use this card to give 4 alcohol to your rival!',
+        damage: 4,
     },
 
     {
         img: 'https://i.pinimg.com/originals/b0/2b/b1/b02bb1a0bd854e89c55e15ef17a82163.jpg',
         title: 'John Bonham Jack',
-        description: 'Use this card to give 2 alcohol to your rival!',
+        damage: 2,
     },
     
     {
         img: 'https://paulkingart.com/wp-content/uploads/2018/01/John-Paul-Jones_PWK.jpg',
         title: 'John Paul Jones',
-        description: 'Use this card to give 2 alcohol to your rival!',
+        damage: 2,
     },
 
     {
         img: 'https://cdn.dribbble.com/users/179241/screenshots/2846846/chris-fernandez-motto-1.png?compress=1&resize=400x300',
         title: 'Finish the bottle!',
-        description: 'Use this card to give 5 alcohol to your rival!',
+        damage: 5,
     },
 
     {
         img: 'https://arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/OCR3UJQMPBHOBO77L26P5G3CLM.jpg',
         title: 'Water',
-        description: 'Use this card to give 0 alcohol to your rival!',
+        damage: 0,
     },
 
     {
         img: 'https://image.shutterstock.com/image-illustration/cartoon-england-elements-set-on-600w-333033137.jpg',
         title: 'London Drink',
-        description: 'Use this card to give 1 alcohol to your rival!',
+        damage: 1,
     },
 
     {
         img: 'https://previews.123rf.com/images/miceking/miceking1604/miceking160400018/54822330-beer-mug-cartoon-with-foam.jpg',
         title: 'Beer',
-        description: 'Use this card to give 1 alcohol to your rival!',
+        damage: 1,
     },
 
     {
         img: 'https://cdn2.vectorstock.com/i/thumb-large/27/56/bottle-vodka-icon-cartoon-style-vector-7722756.jpg',
         title: 'Vodka',
-        description: 'Use this card to give 2 alcohol to your rival!',
+        damage: 2,
     },
 
     {
         img: 'https://image.shutterstock.com/image-vector/vector-cartoon-illustration-tequila-bottle-260nw-1414483793.jpg',
         title: 'Tequila',
-        description: 'Use this card to give 4 alcohol to your rival!',
+        damage: 4,
     },
 ]
-   
+
+
 //   `<div class="flip-card" style="position:relative">
 //     <div class="flip-card-inner">
 //     <div class="flip-card-front">
-//     <img src="" alt="" style="width:235px;height:250px;">
+//     <img src="${this.img}" alt="${this.title}" style="width:235px;height:250px;">
 //     </div>
 //     <div class="flip-card-back">
-//     <h2 style="padding-top: 20px;"><u>Tequila</u></strong>
+//     <h2 style="padding-top: 20px;"><u>${this.title}</u></strong>
 //     </h2>
-//     <p class="</p>
+//     <p class=">${this.damage}</p>
 //     </div>
 //     </div>
 //     </div>`
-    
-    const $playGame = $('#play-game');
-    const $gameBoard = $('.board');
-    const $resetButton = $('#reset-button');
-    const $helpButton = $('#help-button');
-    const $howTo = $('#howTo');
-    const $exitButton = $('#exit-button');
-    const $playerOneInput = $('#player-one-input');
-    const $playButton = $('#play-button');
 
-    
-    
+const $playGame = $('#play-game');
+const $gameBoard = $('.board');
+const $resetButton = $('#reset-button');
+const $helpButton = $('#help-button');
+const $howTo = $('#howTo');
+const $exitButton = $('#exit-button');
+const $playerInput = $('#player-input');
+const $playButton = $('#play-card');
+const $inputButton = $('#enter-button');
+
+
+
 $(function () {
+    
     
     // NOTE the start of the game
     const gameStart = function () {
         
         $howTo.hide();
-        $playerOneInput.val('');
+        $playerInput.val('');
         $gameBoard.hide();
         $resetButton.hide();
         $playGame.show();
-    
+        
         
     }
     
@@ -139,39 +142,141 @@ $(function () {
         $gameBoard.show();
         $playGame.hide();
         $resetButton.show();
-        
+        $inputButton.on('click', enterInput);
     }
     
     const helpButton = function () {
         $howTo.show();
     }
     
-    
     const exitInstruction = function () {
         $howTo.hide();
     }
-    
     const newCard = function () {
-        let card = Math.floor(Math.random() * cards2.length);
-        return cards2[card];
+        let card = Math.floor(Math.random() * CARDS.length);
+        return CARDS[card];
     }
-    console.log(newCard());
-
+    // console.log(newCard());
+    
     const cpuCard = function () {
-        let card = Math.floor(Math.random() * cards2.length);
-        return cards2[card]
+        let card = Math.floor(Math.random() * CARDS.length);
+        return CARDS[card];
     }
-    console.log(cpuCard())
+
+    // console.log(cpuCard())
+    
+    const enterInput = function() {
+        let newMessage;
+        if ($playerInput.val().length === 0) {
+            $('#slideIn').remove();
+            newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Don't be shy, give us your <em>name<em></p>`)
+        } 
+        else {
+            $('#board-messages').empty();
+            newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Rock on ${$playerInput.val()}! We have a special game just for newbies like you are you interested? <br><br>
+            
+            <button id="yes-button" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin: 20px;">Yes!</button><button id="no-button" class="btn btn-lg btn-danger align-self-center" style="font-size: 32px;margin: 20px;">No</button></p>`)
+            
+            $('#no-button').on('click', noResponse)
+            $('#yes-button').on('click', yesResponse)
+        }
+        return newMessage
+    }
+    
+    
+    const noResponse = function () {
+        let newMessage;
+        $('#board-messages').empty();
+        newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">What do you mean ${$playerInput.val()}! No no no, please stay, I'll serve you free drinks all night <br><br>
+        
+        <button id="yes-button" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin: 20px;">Okay, I guess</button></p>`)
+        
+        $('#yes-button').on('click', yesResponse)
+    }
+    
+    const yesResponse = function () {
+        let newMessage;
+        $('#board-messages').empty();
+        newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Fantastic! <br>
+        
+        Let's see how lucky you are tonight, Good luck ${$playerInput.val()}!<br>
+        
+        <span class="lead" style="background-color: rgba(200,200,200,.9">click below to begin</span>
+        
+        <button class="btn btn-md btn-success deal-cards">Begin</button>
+        </p>`)
+        
+        $('#healthBar-name').append(`${$playerInput.val()} Drunkness`);
+        $resetButton.on('click', restartGame);
+
+        // $('.deal-cards').on('click', newCard);
+
+        $('.deal-cards').on('click', function() {
+            let newMessage;
+
+            $('#board-messages').empty();
+
+            newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">LOOKOUT! <br><br>
+
+            ${$playerInput.val()} did ${newCard().damage} alcohol damage to his opponent!<br>
+
+            The opponent replied with ${cpuCard().damage} alcohol damage!
+
+            </p>`)
+            
+            $('#p1-cards').append(`<div class="flip-card" style="position:relative">
+            <div class="flip-card-inner">
+            <div class="flip-card-front">
+            <img src="${newCard().img}" alt="${newCard().title}" style="width:235px;height:250px;">
+            </div>
+            <div class="flip-card-back">
+            <h2 style="padding-top: 20px;"><u>${newCard().title}</u></strong>
+            </h2>
+            <p id="player-damage-value" class="h4">Use this card to give ${newCard().damage} alcohol to your rival!</p>
+            </div>
+            </div>
+            </div>`);
+            console.log(newCard())
+
+            $('#p2-cards').append(`<div class="flip-card" style="position:relative">
+            <div class="flip-card-inner">
+            <div class="flip-card-front">
+            <img src="${cpuCard().img}" alt="${cpuCard().title}" style="width:235px;height:250px;">
+            </div>
+            <div class="flip-card-back">
+            <h2 style="padding-top: 20px;"><u>${cpuCard().title}</u></strong>
+            </h2>
+            <p class="h4">Use this card to give ${cpuCard().damage} alcohol to your rival!</p>
+            </div>
+            </div>
+            </div>`);
+            console.log(cpuCard())
+            
+        })
+    }
+    
+    
+
+    
     
     const restartGame = function () {
 
+        $playerInput.val('');
+        $('#board-messages').empty().append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Hey! I'm the bar owner, it seems like it's your first time here, welcome! We're known for our outstanding game experience. What's your name?</p>`)
+        $('#healthBar-name').val('');
+        $gameBoard.hide();
+        $resetButton.hide();
+        $playGame.show();
+        $('#healthBar-name').empty();
     }
 
     $playGame.on('click', startGame)
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
     $resetButton.on('click', restartGame);
+
     
     gameStart(); 
 });
 
+/* <button id="play-button" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin-top: 20px;">Play</button></p> */
