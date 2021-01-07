@@ -1,38 +1,3 @@
-/* first the player has to select how many people are going to play
-    create a function that will display the boardgame and at the same time hide the selectplayer options
-
-the screen will then change to display the board
-    adjust css/jquery so we can see the player on the left side and the computer on the right side, and we can see their health and liquor meters below their names
-    in the middle left should be the five cards the player has and in the middle right the 5 cards the cpu has, in the dead center should be the deck of cards where each player will be pulling from
-
-the board will show how much life and liquor the player and cpu have
-    create unlickable buttons that will have blue for liquor and red for health, a function will tell them to move once a play has been made
-
-the first move will be made by the player
-    create a function that when the player clicks on a specific card it will do what the card says (take life or add liquor)
-    create an if function that if the player has less than five cards, add a card per click per round, the cpu should automatically do this
-
-the player will click on the deck of cards
-    a function will move the card from the masterdeck to his personal deck
-
-if the card he pulled is an attack card then the opponent has to take damage between 1-4
-    create a function that will do a mathfloor(mathrandom() + 4) on either health or liquor
-    create an if function to say if the inner text says damage then subtract health and elseif inner text says liquor add liquor
-
-once the player's turn is over, it's the computer's turn or other player's turn
-    create a while loop that will iterate as long as the player's/cpu's life isn't meeting the liquor meter then the game goes on
-
-it will go on until the life and liquor meter of either one touch
-    stop the while loop once one of the players two meters meet
-
-once that happens it's game over and the player whose life doesn't touch the liquor meter wins
-    
-
-reset the game
-  to reset the game we will call back the function reset game again
-     */
-    
-    
 const CARDS = [
     {
         img: 'https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg',
@@ -41,7 +6,7 @@ const CARDS = [
     },
 
     {
-        img: "https://lh3.googleusercontent.com/proxy/jnK0A12ezD4Ti6v4NKsvr3APUnpETu44QjxyAI67k5h-IjrAIy43-LhKJp5bLKpHx77HqudbL7_lwiz9wZrPN0ozCegAvp5N9W-ob4N7dawHsz8YiZHSENHXVcPtyQ",
+        img: "https://i.pinimg.com/originals/b3/86/0b/b3860b7fcd969ca8c008c20d97d3c4ec.jpg",
         title: 'Jimmy Page Jug',
         damage: 4,
     },
@@ -94,56 +59,74 @@ const CARDS = [
         damage: 4,
     },
 ]
-
-
-//   `<div class="flip-card" style="position:relative">
-//     <div class="flip-card-inner">
-//     <div class="flip-card-front">
-//     <img src="${this.img}" alt="${this.title}" style="width:235px;height:250px;">
-//     </div>
-//     <div class="flip-card-back">
-//     <h2 style="padding-top: 20px;"><u>${this.title}</u></strong>
-//     </h2>
-//     <p class=">${this.damage}</p>
-//     </div>
-//     </div>
-//     </div>`
-
-const $playGame = $('#play-game');
+const $letsPlay = $('#lets-play');
 const $gameBoard = $('.board');
 const $resetButton = $('#reset-button');
 const $helpButton = $('#help-button');
 const $howTo = $('#howTo');
+const $introToGame = $('#introduction-to-game')
 const $exitButton = $('#exit-button');
 const $playerInput = $('#player-input');
-const $playButton = $('#play-card');
-const $inputButton = $('#enter-button');
-
-
+const $playerHealth = $('#player-health-remaining');
+const $opponentHealth = $('#opponent-health-remaining');
+const $enterButton = $('#enter-button');
+let playerCurrentHealth = 20;
+let opponentCurrentHealth = 20;
+let playersDead = false;
+let playerDamage = 0;
+let cpuDamage = 0;
+let newMessage;
+let playerCurrentCard;
+let cpuCurrentCard;
+let winner = false;
 
 $(function () {
     
     
-    // NOTE the start of the game
+    // NOTE the first thing to popup when window loads
     const gameStart = function () {
         
+        $introToGame.hide();
         $howTo.hide();
         $playerInput.val('');
         $gameBoard.hide();
         $resetButton.hide();
-        $playGame.show();
-        
+        $letsPlay.show();
+        $('lose-overlay').hide();
+        $('win-overlay').hide();
+        $('.deal-cards').hide();
         
     }
     
-    // NOTE the option to pick between one player or two player
-    const startGame = function () {
+    // NOTE when the player clicks on "let's play"
+    const letsPlay = function () {
         
+        $('#answer-buttons').hide();
+        $('.deal-cards').show();
+        $introToGame.show();
         $gameBoard.show();
-        $playGame.hide();
+        $letsPlay.hide();
         $resetButton.show();
-        $inputButton.on('click', enterInput);
+        $enterButton.on('click', firstQuestion);
     }
+
+    const restartGame = function () {
+        playerDamage = 0;
+        cpuDamage = 0;
+        playerCurrentHealth = 20;
+        opponentCurrentHealth = 20;
+        $playerHealth.attr('value', 20)
+        $opponentHealth.attr('value', 20)
+        $('#p1-cards').empty();
+        $('#p2-cards').empty();
+        $playerInput.val('');
+        $('#board-messages').empty();
+        $gameBoard.hide();
+        $resetButton.hide();
+        $letsPlay.show();
+        $('#healthBar-name').empty();
+    }
+
     
     const helpButton = function () {
         $howTo.show();
@@ -152,9 +135,13 @@ $(function () {
     const exitInstruction = function () {
         $howTo.hide();
     }
+
+
+
     const newCard = function () {
         let card = Math.floor(Math.random() * CARDS.length);
-        CARDS[card];
+        playerDamage = CARDS[card].damage;
+        playerCurrentCard = CARDS[card];
         $('#p1-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -163,7 +150,7 @@ $(function () {
             <div class="flip-card-back">
             <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h4">Use this card to give ${CARDS[card].damage} alcohol to your rival!</p>
+            <p id="player-damage-value" class="h4">This card has a value of ${CARDS[card].damage}!</p>
             </div>
             </div>
             </div>`);
@@ -171,125 +158,98 @@ $(function () {
     
     const cpuCard = function () {
         let card = Math.floor(Math.random() * CARDS.length);
-        return CARDS[card];
+        cpuCurrentCard = CARDS[card];
+        cpuDamage = CARDS[card].damage;
+        $('#p2-cards').append(`<div class="flip-card" style="position:relative">
+            <div class="flip-card-inner">
+            <div class="flip-card-front">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:235px;height:250px;">
+            </div>
+            <div class="flip-card-back">
+            <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
+            </h2>
+            <p id="player-damage-value" class="h4">This card has a value of ${CARDS[card].damage}!</p>
+            </div>
+            </div>
+            </div>`);
     }
 
-
-   
-    
-    const enterInput = function() {
-        let newMessage;
-        if ($playerInput.val().length === 0) {
-            $('#slideIn').remove();
-            newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Don't be shy, give us your <em>name<em></p>`)
-        } 
-        else {
+    const checkDamage = function() {
+        if (playerCurrentCard.damage < cpuCurrentCard.damage) {
+            playerCurrentHealth -= 2;
+            $playerHealth.attr('value', playerCurrentHealth)
+        } else if (cpuCurrentCard.damage < playerCurrentCard.damage) {
+            opponentCurrentHealth -= 2;
+            $opponentHealth.attr('value', opponentCurrentHealth)
+        } else if (cpuCurrentCard.damage === playerCurrentCard.damage) {
             $('#board-messages').empty();
-            newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Rock on ${$playerInput.val()}! We have a special game just for newbies like you are you interested? <br><br>
-            
-            <button id="yes-button" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin: 20px;">Yes!</button><button id="no-button" class="btn btn-lg btn-danger align-self-center" style="font-size: 32px;margin: 20px;">No</button></p>`)
-            
-            $('#no-button').on('click', noResponse)
-            $('#yes-button').on('click', yesResponse)
+            $('#board-messages').append(`<p class="h1 slideIn" style="margin-top: 10px;">It's a tie!<br><br>${$playerInput.val()} and opponent got ${playerDamage}</p>`)
         }
-        return newMessage
     }
 
-    
-    
-    const noResponse = function () {
-        let newMessage;
-        $('#board-messages').empty();
-        newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">What do you mean ${$playerInput.val()}! No no no, please stay, I'll serve you free drinks all night <br><br>
-        
-        <button id="yes-button" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin: 20px;">Okay, I guess</button></p>`)
-        
-        $('#yes-button').on('click', yesResponse)
+    const winCondition = function () {
+        if (playerCurrentHealth === 0) {
+            $('#board-messages').empty();
+            $('#lose-overlay').show();
+            $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
+        } else if (opponentCurrentHealth === 0) {
+            $('#board-messages').empty();
+            $('#win-overlay').show();
+            $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
+        }
     }
-    
-    const yesResponse = function () {
-        let newMessage;
+
+    $('.deal-cards').on('click', function() {
+        
         $('#board-messages').empty();
-        newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Fantastic! <br>
+        $('#p1-cards').empty();
+        $('#p2-cards').empty();
         
-        Let's see how lucky you are tonight, Good luck ${$playerInput.val()}!<br>
+        newCard();
+        cpuCard();
         
-        <span class="lead" style="background-color: rgba(200,200,200,.9">click below to begin</span>
+        newMessage = $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">LOOKOUT! <br><br>
         
-        <button class="btn btn-md btn-success deal-cards">Begin</button>
+        ${$playerInput.val()} got ${playerDamage}!<br>
+        
+        The opponent got ${cpuDamage}!<br>
+        
         </p>`)
         
-        $('#healthBar-name').append(`${$playerInput.val()} Drunkness`);
-        $resetButton.on('click', restartGame);
+        checkDamage();
+        winCondition();
+    })
 
-        $('.deal-cards').on('click', newCard);
 
-        // $('.deal-cards').on('click', function() {
-        //     let newMessage;
 
-        //     $('#board-messages').empty();
-
-        //     newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">LOOKOUT! <br><br>
-
-        //     ${$playerInput.val()} did ${newCard().damage} alcohol damage to his opponent!<br>
-
-        //     The opponent replied with ${cpuCard().damage} alcohol damage!
-
-        //     </p>`)
-            
-        //     $('#p1-cards').append(`<div class="flip-card" style="position:relative">
-        //     <div class="flip-card-inner">
-        //     <div class="flip-card-front">
-        //     <img src="${newCard().img}" alt="${newCard().title}" style="width:235px;height:250px;">
-        //     </div>
-        //     <div class="flip-card-back">
-        //     <h2 style="padding-top: 20px;"><u>${newCard().title}</u></strong>
-        //     </h2>
-        //     <p id="player-damage-value" class="h4">Use this card to give ${newCard().damage} alcohol to your rival!</p>
-        //     </div>
-        //     </div>
-        //     </div>`);
-        //     console.log(newCard())
-
-        //     $('#p2-cards').append(`<div class="flip-card" style="position:relative">
-        //     <div class="flip-card-inner">
-        //     <div class="flip-card-front">
-        //     <img src="${cpuCard().img}" alt="${cpuCard().title}" style="width:235px;height:250px;">
-        //     </div>
-        //     <div class="flip-card-back">
-        //     <h2 style="padding-top: 20px;"><u>${cpuCard().title}</u></strong>
-        //     </h2>
-        //     <p class="h4">Use this card to give ${cpuCard().damage} alcohol to your rival!</p>
-        //     </div>
-        //     </div>
-        //     </div>`);
-        //     console.log(cpuCard())
-            
-        // })
-    }
-    
-    
-
-    
-    
-    const restartGame = function () {
-
-        $playerInput.val('');
-        $('#board-messages').empty().append(`<p id="slideIn" class="h1" style="margin-top: 10px;">Hey! I'm the bar owner, it seems like it's your first time here, welcome! We're known for our outstanding game experience. What's your name?</p>`)
-        $('#healthBar-name').val('');
-        $gameBoard.hide();
-        $resetButton.hide();
-        $playGame.show();
-        $('#healthBar-name').empty();
-    }
-
-    $playGame.on('click', startGame)
+    $letsPlay.on('click', letsPlay)
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
     $resetButton.on('click', restartGame);
-
+    
     
     gameStart(); 
+    
+    
+    
 });
 
-/* <button id="play-button" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin-top: 20px;">Play</button></p> */
+
+const firstQuestion = function() {
+    if ($playerInput.val().length === 0) {
+        $('#intro-text').empty();
+        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p>`)
+    } 
+    else {
+        $('#intro-text').empty();
+        $('#player-name').append(`${$playerInput.val()}`)
+        $('#healthBar-name').append(`${$playerInput.val()}'s Drunkness`)
+        $($playerInput).hide();
+        $($enterButton).hide();
+        $('#answer-buttons').show();
+
+
+        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Rock on ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
+    }
+}
+

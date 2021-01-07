@@ -35,27 +35,22 @@
     
     <div id="main-game-div" class="d-flex justify-content-center"> 
         <div id="button-div" class="d-flex flex-column justify-content-center">
-            <button id="play-game" class="btn btn-lg btn-outline-warning players">Let's Play</button>
+            <button id="lets-play" class="btn btn-lg btn-outline-warning players">Let's Play</button>
         </div>
         
-        <div id="player-one-board" class="game-board container board" style="position:relative"> 
-            <div class="container d-flex justify-content-center">
-                <input id="player-input" type="text" placeholder="Choose your name" class="text-center" style="margin-top: 4px;">
-                <button id="enter-button"class="btn-lg btn-outline-warning">enter</button>
-            </div>
-
-            <!-- <button id="play-card" class="btn btn-lg btn-success align-self-center" style="font-size: 32px;margin-top: 20px;">Play Card</button> -->
+        <div id="player-one-board" class="game-board container board" style="position:relative">
+            <p id="player-name" style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter; width: 500px; margin-left: 143px;"></p> 
 
             <div id="p1-cards" style="justify-content: center;"></div>
 
             <div id="health" class="container" style="background-color: rgba(225,200,200,.5); position: absolute; bottom: 10px; left: 50px; width: 650px;">
                 <p id="healthBar-name" class=h4></p>
-                <meter id="player-health-remaining" value="20" min="0" max="20" style="width: 100%; height: 40px;">100%</meter>
+                <meter id="player-health-remaining" value="20" min="0" max="20" style="width: 100%; height: 40px;"></meter>
             </div>
         </div>
         
         <div id="board-messages" class="game-board container board" style="position: relative;">
-            <p id="slideIn" class="h1" style="margin-top: 10px;">Hey! I'm the bar owner, it seems like it's your first time here, welcome! We're known for our outstanding game experience. What's your name?</p>
+            
         </div>
         
         <div id="player-two-div" class="game-board container board" style="position: relative;">
@@ -75,7 +70,34 @@
     <div id="reset" class="d-flex justify-content-center">
         <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
         <button id="help-button" class="btn btn-lg btn-outline-success help-button">How to play</button>
+        <button class="btn btn-md btn-outline-warning deal-cards">Deal Cards</button>
+        </p>
 
+    </div>
+
+
+    <div id="introduction-to-game" class="text-center display-5" style="margin: 10px; line-height: 200%;">
+        <div >
+            <div class="slideIn">
+                <div>
+                    <div id="intro-text">
+                        Hey! I'm Serg, the bar owner, it seems like this is your first time here, what's your name?
+                    </div>
+
+                    <div id="answer-buttons">
+                        <div>
+                            <button class="btn btn-lg btn-outline-success">Sure</button>
+                            <button class="btn btn-lg btn-outline-danger">Nahh</button>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input id="player-input" type="text" placeholder="Enter your name" class="text-center" style="margin: 50px 20px 20px 20px;">
+                    <button id="enter-button"class="btn btn-lg btn-warning">enter</button>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div id="howTo" class="text-center">
@@ -131,6 +153,24 @@
         </div>
             
         
+    </div>
+
+    <div id="lose-overlay" style="margin-top: 10px; display: none">
+        <div class="display-2">
+            YOU LOSE! <span class="lead">Now pay me back for the free drinks!</span>
+        </div>
+        <div>
+            <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
+        </div>
+    </div>
+    
+    <div id="win-overlay" style="margin-top: 10px; display: none">
+        <div class="display-2">
+            YOU WIN! <span class="lead">You are ready for the big boy club!</span>
+        </div>
+        <div>
+            <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
+        </div>
     </div>
     
 </body>
