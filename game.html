@@ -107,72 +107,112 @@
     
     <div id="howTo" class="text-center">
     
-        <div class="display-3 font-effect-neon">
+        <div class="display-3 font-effect-anaglyph">
             HOW TO PLAY
         </div>
+        <!-- <div class="display-5 font-effect-neon">Are you ready to try your luck?</div> -->
 
         <br><br>
         
         <div class="row justify-content-around" style="position: absolute;">
-            <div id="first-col" class="howto-text h2 col-3">Are you ready to try your luck? Well in this game you can. You and your opponent will both begin with <span class="text-danger">16 Health</span>. This is what your meter will look like:<br>
+            <div id="first-col" class="howto-text h2 col-3">You and your opponent will both begin with a full <span class="text-danger">Sobriety</span> meter. Your meter will reflect your life.Whoever's meter drops to zero first, LOSES <br><br>
                 
-                
-            <img id="health-screenshot" src="health-screenshot.png" alt="Health Meter" style="margin: 40px 40px 0 40px;">
+                <p class="h2" style="margin:0; color: rgba(255, 255, 0, 0.863)">Full health</p>
+                <div style="border: 1px solid red; padding: 20px; margin-bottom: 30px;">
+                    <p class="h4">Luca's Sobriety</p>
+                    <meter value="20" min="0" max="20" style="width: 100%; height: 40px;"></meter>    
+                </div>
+                <p class="h3" style="margin:0; color: rgba(255, 255, 0, 0.863)">Half-drunk</p>
+                <div style="border: 1px solid red; padding: 20px; margin-bottom: 30px;">
+                    <p class="h4">Luca's Sobriety</p>
+                    <meter value="10" min="0" max="20" style="width: 100%; height: 40px;"></meter>    
+                </div>
+                <p class="h3" style="margin:0; color: rgba(255, 255, 0, 0.863)">Passed out</p>
+                <div style="border: 1px solid red; padding: 20px">
+                    <p class="h4">Luca's Sobriety</p>
+                    <meter value="0" min="0" max="20" style="width: 100%; height: 40px;"></meter>    
+                </div>
             </div>
              
-            <div id="second-col" class="howto-text h2 col-3">    
-            You will select a card from your hand. Whatever you choose will impact your opponent directly. For example this could be your card (Hint: <u class="text-warning">hover</u> over it):
-
-            <br><br>
+            <div id="second-col" class="howto-text h2 col-5" style="padding: 0">    
+                The way the damage is handled depends on your card's value. If your card's value is greater than your opponents than you the damage! Likewise if theirs is greater you receive it
+                For example this could be your card (Hint: <u class="text-warning">hover</u> over it):
+                <br>
+                <div class="d-flex" style="margin: 4px">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
+                                <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width:300px;height:400px;"> 
+                            </div>
+                            <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
+                                <h2 style="padding: 20px;"><u>Robert Plant Rum</u>
+                                </h2>
+                                <p class="card-info h2">This card has a value of 3!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" style="position:relative">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
+                                <img src="https://paulkingart.com/wp-content/uploads/2018/01/John-Paul-Jones_PWK.jpg" alt="John Paul Jones" style="width:300px;height:400px;">
+                            </div>
+                            <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
+                                <h2 style="padding: 20px;"><u>John Paul Jones</u>
+                                </h2>
+                                <p id="player-damage-value" class="h2">This card has a value of 2!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" style="position:relative">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
+                                <img src="https://i.pinimg.com/originals/b3/86/0b/b3860b7fcd969ca8c008c20d97d3c4ec.jpg" alt="Jimmy Page Jug" style="width:300px;height:400px;">
+                            </div>
+                            <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
+                                <h2 style="padding: 20px;"><u>Jimmy Page Jug</u>
+                                </h2>
+                                <p id="player-damage-value" class="h2">This card has a value of 4!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg" alt="Robert Plant Rum" style="width:235px;height:250px;">
-                    </div>
-                    <div class="flip-card-back">
-                        <h2 style="padding-top: 20px;"><u>Robert Plant Rum</u></strong>
-                        </h2>
-                        <p class="card-info h3">Use this card to give 3 alcohol to your rival!
-                        </p>
-                    </div>
-                </div>
-            </div>
-                  
-
+                
                 There are a total of <span class="text-primary">10</span> different types of cards that you can potentially get!
-
-
+                
+                
             </div>
-
-            <div id="third-col" class="howto-text h2 col-3">
-            Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponent's Health to zero. Once that happens the game ends!
-
             
+            <div id="third-col" class="howto-text h2 col-3">
+                Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponent's Health to zero. Once that happens the game ends!
+                <!-- The game will begin as soon as you click <span class="text-success">Deal Cards</span>  -->
+                
+                
                 <div style="margin: 100px;">
-                    <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">Exit</button>
+                    <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">PLAY NOW!</button>
                 </div>
-
+                
             </div>
-
+            
         </div>
             
         
     </div>
 
     <div id="lose-overlay" style="margin-top: 10px; display: none">
-        <div class="display-2">
-            YOU LOSE! <span class="lead">Now pay me back for the free drinks!</span>
+        <div class="display-2">YOU LOSE! 
         </div>
+        <p class="display-3">Now pay me back for the free drinks!</p>
         <div>
             <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
         </div>
     </div>
     
     <div id="win-overlay" style="margin-top: 10px; display: none">
-        <div class="display-2">
-            YOU WIN! <span class="lead">You are ready for the big boy club!</span>
+        <div class="display-2">YOU WIN! 
         </div>
+        <p class="display-3">You are ready for the big boy club!</p>
         <div>
             <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
         </div>

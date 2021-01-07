@@ -78,13 +78,13 @@ let cpuDamage = 0;
 let newMessage;
 let playerCurrentCard;
 let cpuCurrentCard;
-let winner = false;
 
 $(function () {
     
+    gameStart();
     
     // NOTE the first thing to popup when window loads
-    const gameStart = function () {
+    function gameStart () {
         
         $helpButton.hide();
         $introToGame.hide();
@@ -107,7 +107,6 @@ $(function () {
         $('#answer-buttons').hide();
         $('.deal-cards').show();
         $introToGame.show();
-        $gameBoard.show();
         $letsPlay.hide();
         $resetButton.show();
         $enterButton.on('click', firstQuestion);
@@ -133,35 +132,6 @@ $(function () {
         $resetButton.hide();
         $letsPlay.show();
         $('.deal-cards').hide();
-        ('body').append(`<div id="introduction-to-game" class="text-center display-5" style="margin: 10px; line-height: 200%;">
-        <div >
-            <div class="slideIn">
-                <div>
-                    <div id="intro-text">
-                        Hey! I'm Serg, the bar owner, it seems like this is your first time here, what's your name?
-                    </div>
-
-                    <div id="answer-buttons">
-                        <div>
-                            <button id="sure-button" class="btn btn-lg btn-outline-success">Yes</button>
-                            <button id="nahh-button" class="btn btn-lg btn-outline-danger">Nahh</button>
-                        </div>
-                    </div>
-                    <div id="reset-2">
-                        <button id="reset-button-2" class="btn btn-lg btn-outline-danger">RESET</button>
-                    </div>
-                    <div id="how-to-2">
-                        <button id="help-button-2" class="btn btn-lg btn-outline-success help-button">Next</button>
-                    </div>
-                </div>
-                <div>
-                    <input id="player-input" type="text" placeholder="Enter your name" class="text-center" style="margin: 50px 20px 20px 20px;">
-                    <button id="enter-button"class="btn btn-lg btn-warning">enter</button>
-                </div>
-            </div>
-        </div>
-    </div>`)
-
     }
 
     
@@ -172,9 +142,31 @@ $(function () {
     
     const exitInstruction = function () {
         $howTo.hide();
+        $resetButton.hide();
+        $gameBoard.show();
     }
-
-
+    
+    
+    $('.deal-cards').on('click', function() {
+        
+        $('#board-messages').empty();
+        $('#p1-cards').empty();
+        $('#p2-cards').empty();
+        
+        newCard();
+        cpuCard();
+        
+        newMessage = $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">LOOKOUT! <br><br>
+        
+        ${$playerInput.val()} got ${playerDamage}!<br>
+        
+        The opponent got ${cpuDamage}!<br>
+        
+        </p>`)
+        
+        checkDamage();
+        winCondition();
+    })
 
     const newCard = function () {
         let card = Math.floor(Math.random() * CARDS.length);
@@ -183,7 +175,7 @@ $(function () {
         $('#p1-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
             <div class="flip-card-front">
-            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:235px;height:250px;">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px;">
             </div>
             <div class="flip-card-back">
             <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
@@ -201,7 +193,7 @@ $(function () {
         $('#p2-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
             <div class="flip-card-front">
-            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:235px;height:250px;">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px;">
             </div>
             <div class="flip-card-back">
             <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
@@ -224,54 +216,31 @@ $(function () {
             $('#board-messages').append(`<p class="h1 slideIn" style="margin-top: 10px;">It's a tie!<br><br>${$playerInput.val()} and opponent got ${playerDamage}</p>`)
         }
     }
-
+    
     const winCondition = function () {
+
         if (playerCurrentHealth === 0) {
             $('#board-messages').empty();
             $('#lose-overlay').show();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
+            console.log($resetButton)
         } else if (opponentCurrentHealth === 0) {
             $('#board-messages').empty();
             $('#win-overlay').show();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
+            console.log($resetButton)
         }
     }
-
-    $('.deal-cards').on('click', function() {
-        
-        $('#board-messages').empty();
-        $('#p1-cards').empty();
-        $('#p2-cards').empty();
-        
-        newCard();
-        cpuCard();
-        
-        newMessage = $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">LOOKOUT! <br><br>
-        
-        ${$playerInput.val()} got ${playerDamage}!<br>
-        
-        The opponent got ${cpuDamage}!<br>
-        
-        </p>`)
-        
-        checkDamage();
-        winCondition();
-    })
-
-
-
-    $letsPlay.on('click', letsPlay)
-    $helpButton.on('click', helpButton);
-    $exitButton.on('click', exitInstruction);
-    $resetButton.on('click', restartGame);
-    $('#reset-button-2').on('click', restartGame);
-    $('#how-to-2').on('click', helpButton);
+    
+    
+    
+    
     
     const firstQuestion = function() {
         if ($playerInput.val().length === 0) {
             $('#intro-text').empty();
             newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p>`)
-    
+            
         } 
         else {
             $('#intro-text').empty();
@@ -290,7 +259,7 @@ $(function () {
     const secondQuestion = function() {
         $('#sure-button').on('click', function () {
             $('#intro-text').empty();
-            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions, click Next to see</p>`);
+            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p>`);
             $('#answer-buttons').hide();
             $('#how-to-2').show();
         })
@@ -304,10 +273,14 @@ $(function () {
         })
     }
     
-    gameStart(); 
     
-    
-    
+    $letsPlay.on('click', letsPlay)
+    $helpButton.on('click', helpButton);
+    $exitButton.on('click', exitInstruction);
+    $('#reset-button-2').on('click', restartGame);
+    $('#how-to-2').on('click', helpButton);
+    $resetButton.on('click', restartGame);
+
 });
 
 
