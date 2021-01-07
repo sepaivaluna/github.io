@@ -86,6 +86,7 @@ $(function () {
     // NOTE the first thing to popup when window loads
     const gameStart = function () {
         
+        $helpButton.hide();
         $introToGame.hide();
         $howTo.hide();
         $playerInput.val('');
@@ -101,6 +102,8 @@ $(function () {
     // NOTE when the player clicks on "let's play"
     const letsPlay = function () {
         
+        $('#how-to-2').hide();
+        $('#reset-2').hide();
         $('#answer-buttons').hide();
         $('.deal-cards').show();
         $introToGame.show();
@@ -108,9 +111,14 @@ $(function () {
         $letsPlay.hide();
         $resetButton.show();
         $enterButton.on('click', firstQuestion);
+        secondQuestion();
     }
 
     const restartGame = function () {
+
+        $introToGame.hide();
+        $('#player-name').empty();
+        $('#healthBar-name').empty();
         playerDamage = 0;
         cpuDamage = 0;
         playerCurrentHealth = 20;
@@ -124,12 +132,42 @@ $(function () {
         $gameBoard.hide();
         $resetButton.hide();
         $letsPlay.show();
-        $('#healthBar-name').empty();
+        $('.deal-cards').hide();
+        ('body').append(`<div id="introduction-to-game" class="text-center display-5" style="margin: 10px; line-height: 200%;">
+        <div >
+            <div class="slideIn">
+                <div>
+                    <div id="intro-text">
+                        Hey! I'm Serg, the bar owner, it seems like this is your first time here, what's your name?
+                    </div>
+
+                    <div id="answer-buttons">
+                        <div>
+                            <button id="sure-button" class="btn btn-lg btn-outline-success">Yes</button>
+                            <button id="nahh-button" class="btn btn-lg btn-outline-danger">Nahh</button>
+                        </div>
+                    </div>
+                    <div id="reset-2">
+                        <button id="reset-button-2" class="btn btn-lg btn-outline-danger">RESET</button>
+                    </div>
+                    <div id="how-to-2">
+                        <button id="help-button-2" class="btn btn-lg btn-outline-success help-button">Next</button>
+                    </div>
+                </div>
+                <div>
+                    <input id="player-input" type="text" placeholder="Enter your name" class="text-center" style="margin: 50px 20px 20px 20px;">
+                    <button id="enter-button"class="btn btn-lg btn-warning">enter</button>
+                </div>
+            </div>
+        </div>
+    </div>`)
+
     }
 
     
     const helpButton = function () {
         $howTo.show();
+        $introToGame.hide();
     }
     
     const exitInstruction = function () {
@@ -226,7 +264,45 @@ $(function () {
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
     $resetButton.on('click', restartGame);
+    $('#reset-button-2').on('click', restartGame);
+    $('#how-to-2').on('click', helpButton);
     
+    const firstQuestion = function() {
+        if ($playerInput.val().length === 0) {
+            $('#intro-text').empty();
+            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p>`)
+    
+        } 
+        else {
+            $('#intro-text').empty();
+            $('#player-name').append(`${$playerInput.val()}`)
+            $('#healthBar-name').append(`${$playerInput.val()}'s Drunkness`)
+            $($playerInput).hide();
+            $($enterButton).hide();
+            $('#answer-buttons').show();
+            $('#reset-button-2').hide();
+            
+            
+            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Rock on ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
+        }
+    }
+    
+    const secondQuestion = function() {
+        $('#sure-button').on('click', function () {
+            $('#intro-text').empty();
+            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions, click Next to see</p>`);
+            $('#answer-buttons').hide();
+            $('#how-to-2').show();
+        })
+        
+        $('#nahh-button').on('click', function () {
+            $('#intro-text').empty();
+            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Come see us anytime<br><br></p>`);
+            $('#answer-buttons').hide();
+            $('#reset-2').show();
+            $('#reset-button-2').show();
+        })
+    }
     
     gameStart(); 
     
@@ -235,21 +311,4 @@ $(function () {
 });
 
 
-const firstQuestion = function() {
-    if ($playerInput.val().length === 0) {
-        $('#intro-text').empty();
-        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p>`)
-    } 
-    else {
-        $('#intro-text').empty();
-        $('#player-name').append(`${$playerInput.val()}`)
-        $('#healthBar-name').append(`${$playerInput.val()}'s Drunkness`)
-        $($playerInput).hide();
-        $($enterButton).hide();
-        $('#answer-buttons').show();
-
-
-        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Rock on ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
-    }
-}
 
