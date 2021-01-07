@@ -154,16 +154,28 @@ $(function () {
     }
     const newCard = function () {
         let card = Math.floor(Math.random() * CARDS.length);
-        return CARDS[card];
+        CARDS[card];
+        $('#p1-cards').append(`<div class="flip-card" style="position:relative">
+            <div class="flip-card-inner">
+            <div class="flip-card-front">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:235px;height:250px;">
+            </div>
+            <div class="flip-card-back">
+            <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
+            </h2>
+            <p id="player-damage-value" class="h4">Use this card to give ${CARDS[card].damage} alcohol to your rival!</p>
+            </div>
+            </div>
+            </div>`);
     }
-    // console.log(newCard());
     
     const cpuCard = function () {
         let card = Math.floor(Math.random() * CARDS.length);
         return CARDS[card];
     }
 
-    // console.log(cpuCard())
+
+   
     
     const enterInput = function() {
         let newMessage;
@@ -182,6 +194,7 @@ $(function () {
         }
         return newMessage
     }
+
     
     
     const noResponse = function () {
@@ -209,50 +222,50 @@ $(function () {
         $('#healthBar-name').append(`${$playerInput.val()} Drunkness`);
         $resetButton.on('click', restartGame);
 
-        // $('.deal-cards').on('click', newCard);
+        $('.deal-cards').on('click', newCard);
 
-        $('.deal-cards').on('click', function() {
-            let newMessage;
+        // $('.deal-cards').on('click', function() {
+        //     let newMessage;
 
-            $('#board-messages').empty();
+        //     $('#board-messages').empty();
 
-            newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">LOOKOUT! <br><br>
+        //     newMessage = $('#board-messages').append(`<p id="slideIn" class="h1" style="margin-top: 10px;">LOOKOUT! <br><br>
 
-            ${$playerInput.val()} did ${newCard().damage} alcohol damage to his opponent!<br>
+        //     ${$playerInput.val()} did ${newCard().damage} alcohol damage to his opponent!<br>
 
-            The opponent replied with ${cpuCard().damage} alcohol damage!
+        //     The opponent replied with ${cpuCard().damage} alcohol damage!
 
-            </p>`)
+        //     </p>`)
             
-            $('#p1-cards').append(`<div class="flip-card" style="position:relative">
-            <div class="flip-card-inner">
-            <div class="flip-card-front">
-            <img src="${newCard().img}" alt="${newCard().title}" style="width:235px;height:250px;">
-            </div>
-            <div class="flip-card-back">
-            <h2 style="padding-top: 20px;"><u>${newCard().title}</u></strong>
-            </h2>
-            <p id="player-damage-value" class="h4">Use this card to give ${newCard().damage} alcohol to your rival!</p>
-            </div>
-            </div>
-            </div>`);
-            console.log(newCard())
+        //     $('#p1-cards').append(`<div class="flip-card" style="position:relative">
+        //     <div class="flip-card-inner">
+        //     <div class="flip-card-front">
+        //     <img src="${newCard().img}" alt="${newCard().title}" style="width:235px;height:250px;">
+        //     </div>
+        //     <div class="flip-card-back">
+        //     <h2 style="padding-top: 20px;"><u>${newCard().title}</u></strong>
+        //     </h2>
+        //     <p id="player-damage-value" class="h4">Use this card to give ${newCard().damage} alcohol to your rival!</p>
+        //     </div>
+        //     </div>
+        //     </div>`);
+        //     console.log(newCard())
 
-            $('#p2-cards').append(`<div class="flip-card" style="position:relative">
-            <div class="flip-card-inner">
-            <div class="flip-card-front">
-            <img src="${cpuCard().img}" alt="${cpuCard().title}" style="width:235px;height:250px;">
-            </div>
-            <div class="flip-card-back">
-            <h2 style="padding-top: 20px;"><u>${cpuCard().title}</u></strong>
-            </h2>
-            <p class="h4">Use this card to give ${cpuCard().damage} alcohol to your rival!</p>
-            </div>
-            </div>
-            </div>`);
-            console.log(cpuCard())
+        //     $('#p2-cards').append(`<div class="flip-card" style="position:relative">
+        //     <div class="flip-card-inner">
+        //     <div class="flip-card-front">
+        //     <img src="${cpuCard().img}" alt="${cpuCard().title}" style="width:235px;height:250px;">
+        //     </div>
+        //     <div class="flip-card-back">
+        //     <h2 style="padding-top: 20px;"><u>${cpuCard().title}</u></strong>
+        //     </h2>
+        //     <p class="h4">Use this card to give ${cpuCard().damage} alcohol to your rival!</p>
+        //     </div>
+        //     </div>
+        //     </div>`);
+        //     console.log(cpuCard())
             
-        })
+        // })
     }
     
     
