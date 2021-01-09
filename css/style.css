@@ -240,12 +240,7 @@ meter::-webkit-meter-sub-sub-optimum-value {
     background-color: white;
 }
 
-.fa-laugh-wink {
-    font-size: 100px;
-    color: gold;
-}
-
-.fa-frown {
+.fa-laugh-wink, .fa-frown  {
     font-size: 100px;
     color: gold;
 }
