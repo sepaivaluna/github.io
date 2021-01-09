@@ -271,11 +271,13 @@ $(function () {
             $('#board-messages').empty();
             $('#lose-overlay').show();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
+            $('#lose-reset-container').empty();
             $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#lose-reset-container');
-
+            
         } else if (opponentCurrentHealth === 0) {
             $('#board-messages').empty();
             $('#win-overlay').show();
+            $('#win-reset-container').empty();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
             $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#win-reset-container')
 
@@ -308,7 +310,6 @@ $(function () {
         $('#yes-answer').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p><br>`);
         $('#answer-buttons').hide();
         $('#how-to-2').show();
-        $('#reset-2').empty();
         $('#some-input').empty()
     })
     
