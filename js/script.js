@@ -114,12 +114,17 @@ $(function () {
         $('#lose-overlay').hide();
         $('#win-overlay').hide();
         $('.deal-cards').hide();
+        $('#some-input').empty();
     }
     
     // NOTE when the player clicks on reset
     const restart = function () {
-        
-        // resetGame = true;
+
+        $('#yes-answer').empty();
+        $('#no-answer').empty();
+        $('#no-input').empty();
+        $('#some-input').empty();
+        $('#intro-text').show();
         $introToGame.hide();
         $('#player-name').empty();
         $('#healthBar-name').empty();
@@ -141,6 +146,10 @@ $(function () {
         $('.credits-button').show();
         $('#win-overlay').hide();
         $('#lose-overlay').hide();
+        $('#player-input-div').show();
+        $('#enter-button').show();
+        $($playerInput).show();
+
         // checkRestart();
     }
 
@@ -176,12 +185,6 @@ $(function () {
         $('.deal-cards').show();
         $resetButton.show();
     }
-    
-    // const checkRestart = function () {
-    //     if (resetGame === true) {
-    //         location.reload();
-    //     }
-    // }
     
     $('.deal-cards').on('click', function() {
         
@@ -282,36 +285,41 @@ $(function () {
     $enterButton.on('click', function (){
 
         if ($playerInput.val().length === 0) {
-            $('#intro-text').empty();
-            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p>`)
-            
+            $('#intro-text').hide();
+            $('#no-input').empty();
+            $(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p><br>`).appendTo('#no-input');
         } 
+
         else {
-            $('#intro-text').empty();
+            $('#intro-text').hide();
+            $('#no-input').empty();
             $('#player-name').append(`${$playerInput.val()}`)
             $('#healthBar-name').append(`${$playerInput.val()}'s Drunkness`)
             $($playerInput).hide();
             $($enterButton).hide();
             $('#answer-buttons').show();
             
-            
-            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Welcome ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
+            $('#some-input').append(`<p class="slideIn display-5" style="margin-top: 10px;">Welcome ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
         }
     })
     
     $('#yes-button').on('click', function () {
-        $('#intro-text').empty();
-        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p><br>`);
+        $('#intro-text').hide();
+        $('#yes-answer').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p><br>`);
         $('#answer-buttons').hide();
         $('#how-to-2').show();
+        $('#reset-2').empty();
+        $('#some-input').empty()
     })
     
     $('#no-button').on('click', function () {
-        $('#intro-text').empty();
-        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Come see us anytime<br><br></p>`);
+        $('#intro-text').hide();
+        $('#no-answer').append(`<p class="slideIn display-5" style="margin-top: 10px;">Come see us anytime</p><br>`);
         $('#answer-buttons').hide();
+        $('#reset-2').empty();
         $('#reset-2').show();
         $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#reset-2');
+        $('#some-input').empty()
     })
 
     

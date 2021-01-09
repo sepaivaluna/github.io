@@ -86,27 +86,38 @@
     <div id="introduction-to-game" class="text-center display-5" style="margin: 10px; line-height: 200%;">
         <div>
             <div class="slideIn">
-                <div>
-                    <div id="intro-text">
-                        Hey! I'm Thanos, the bar owner, it seems like this is your first time here, what's your name?
-                    </div>
 
-                    <div id="answer-buttons">
-                        <div>
-                            <button id="yes-button" class="btn btn-lg btn-outline-success">Yes</button>
-                            <button id="no-button" class="btn btn-lg btn-outline-danger">No</button>
-                        </div>
-                    </div>
-
-                    <div id="reset-2" style="justify-self: center; align-self: center; font-size: 2rem;"></div>
-
-                    <div id="how-to-2">
-                        <button id="help-button-2" class="btn btn-lg btn-outline-success help-button">Next</button>
-                    </div>
+                <div id="intro-text">
+                    Hey! I'm Thanos, the bar owner, it seems like this is your first time here, what's your name?
                 </div>
-                <div>
+
+                <div id="no-input" class="slideIn"></div>
+
+                <div id="some-input" class="slideIn"></div>
+
+                <div id="yes-answer">
+                    <!-- Great! Let's begin by going over the instructions --></div>
+
+                <div id="no-answer"></div>
+                
+                <div id="player-input-div" class="slideIn">
                     <input id="player-input" type="text" placeholder="Enter your name" class="text-center" style="margin: 50px 20px 20px 20px;">
                     <button id="enter-button"class="btn btn-lg btn-warning">enter</button>
+                </div>
+
+
+
+                <div id="answer-buttons">
+                    <div>
+                        <button id="yes-button" class="btn btn-lg btn-outline-success">Yes</button>
+                        <button id="no-button" class="btn btn-lg btn-outline-danger">No</button>
+                    </div>
+                </div>
+
+                <div id="reset-2" style="justify-self: center; align-self: center; font-size: 2rem;"></div>
+
+                <div id="how-to-2">
+                    <button id="help-button-2" class="btn btn-lg btn-outline-success help-button">Next</button>
                 </div>
             </div>
         </div>
@@ -171,18 +182,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="flip-card" style="position:relative">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
-                                <img src="https://i.pinimg.com/originals/b3/86/0b/b3860b7fcd969ca8c008c20d97d3c4ec.jpg" alt="Jimmy Page Jug" style="width:300px;height:400px;">
-                            </div>
-                            <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
-                                <h2 style="padding: 20px;"><u>Jimmy Page Jug</u>
-                                </h2>
-                                <p id="player-damage-value" class="h2">This card has a value of 4!</p>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 
                 
@@ -256,8 +255,3 @@
     
 </body>
 </html>
-
-<!-- $("#win-reset-container").delegate($resetButton, "click", restart)
-    $("#lose-reset-container").delegate($resetButton, "click", restart)
-    $("#reset-2").delegate($resetButton, "click", restart)
-    $("#reset").delegate($resetButton, "click", restart) -->
