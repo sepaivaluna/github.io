@@ -212,13 +212,13 @@ $(function () {
         playerCurrentCard = CARDS[card];
         $('#p1-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
-            <div class="flip-card-front">
-            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px;">
+            <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233); border-radius: 5rem;">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px; border-radius: 5rem;">
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233); border-radius: 5rem;">
             <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-guitar little-guitar"></i>
+            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-guitar little-guitar font-effect-anaglyph"></i>
             </div>
             </div>
             </div>`);
@@ -230,13 +230,13 @@ $(function () {
         cpuDamage = CARDS[card].damage;
         $('#p2-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
-            <div class="flip-card-front">
-            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px;">
+            <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(255, 44, 37); border-radius: 5rem;">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px; border-radius: 5rem;">
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(255, 44, 37); border-radius: 5rem;">
             <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-drum"></i>
+            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-drum font-effect-anaglyph"></i>
             </div>
             </div>
             </div>`);

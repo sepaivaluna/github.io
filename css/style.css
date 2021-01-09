@@ -18,7 +18,8 @@ body {
 }
 
 .game-board {
-    background-image: url('https://t4.ftcdn.net/jpg/01/55/13/17/360_F_155131769_e5MubWtYLjsM43cR8nWseeO29GEEkHsE.jpg');
+    /* background-image: url('https://t4.ftcdn.net/jpg/01/55/13/17/360_F_155131769_e5MubWtYLjsM43cR8nWseeO29GEEkHsE.jpg'); */
+    background-color: rgba(225,225,225,.7);
     background-size: 150px;
     background-position: center;
     height: 49vh;
@@ -243,11 +244,6 @@ meter::-webkit-meter-sub-sub-optimum-value {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
-}
-
-.big-guitar {
-    font-size: 125px;
-    color: red;
 }
 
 .fa-drum, .little-guitar {
