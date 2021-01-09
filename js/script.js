@@ -195,11 +195,11 @@ $(function () {
         cpuCard();
         
         newMessage = $('#board-messages').append(`
-        <p class="slideIn h1 fw-bold" style="margin-top: 10px;">WATCHOUT!</p>
+        <p class="h1 fw-bold" style="margin-top: 10px;">WATCHOUT!</p>
         
-        <p class="slideIn h1" style="margin-top: 10px;">${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!</p>
+        <p class="h1" style="margin-top: 10px;">${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!</p>
         
-        <p class="slideIn h1" style="margin-top: 10px;">The opponent's was worth ${cpuDamage}!</p>
+        <p class="h1" style="margin-top: 10px;">The opponent's was worth ${cpuDamage}!</p>
        `)
         addMessage();
         checkDamage();
@@ -257,9 +257,9 @@ $(function () {
 
     const addMessage = function () {
         if (playerCurrentCard.damage < cpuCurrentCard.damage) {
-            $('#board-messages').append(`<p class="h1 slideIn"><strong>The opponent beats ${$playerInput.val()} this round</p>`)
+            $('#board-messages').append(`<p class="h1"><strong>The opponent beats ${$playerInput.val()} this round</p>`)
         } else if (playerCurrentCard.damage > cpuCurrentCard.damage) {
-            $('#board-messages').append(`<br><p class="h1 slideIn">${$playerInput.val()} wins this round!</p>`)
+            $('#board-messages').append(`<br><p class="h1">${$playerInput.val()} wins this round!</p>`)
 
         }
     }
@@ -280,8 +280,6 @@ $(function () {
             $('#win-reset-container').empty();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
             $('<button class="reset-button btn btn-lg btn-danger">RESET</button>').appendTo('#win-reset-container')
-            $('.deal-cards').disabled()
-
         }
     }
     
