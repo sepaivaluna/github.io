@@ -1,60 +1,60 @@
 const CARDS = [
     {
         img: 'https://i.pinimg.com/236x/ed/19/e9/ed19e9d50a85c69ab8dcef11ebefbe33.jpg',
-        title: 'Robert Plant Rum',
-        damage: 3,
+        title: 'Robert Plant',
+        damage: 5,
     },
 
     {
         img: "https://i.pinimg.com/originals/b3/86/0b/b3860b7fcd969ca8c008c20d97d3c4ec.jpg",
         title: 'Jimmy Page Jug',
-        damage: 4,
+        damage: 5,
     },
 
     {
         img: 'https://i.pinimg.com/originals/b0/2b/b1/b02bb1a0bd854e89c55e15ef17a82163.jpg',
-        title: 'John Bonham Jack',
-        damage: 2,
+        title: 'John Bonham',
+        damage: 5,
     },
     
     {
         img: 'https://paulkingart.com/wp-content/uploads/2018/01/John-Paul-Jones_PWK.jpg',
         title: 'John Paul Jones',
-        damage: 2,
-    },
-
-    {
-        img: 'https://cdn.dribbble.com/users/179241/screenshots/2846846/chris-fernandez-motto-1.png?compress=1&resize=400x300',
-        title: 'Finish the bottle!',
         damage: 5,
     },
 
     {
-        img: 'https://arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/OCR3UJQMPBHOBO77L26P5G3CLM.jpg',
+        img: 'https://static.turbosquid.com/Preview/2019/06/28__14_12_53/A.jpgA2C30F7B-33CA-47FB-AE1E-1BE59BDEAC2DLarge.jpg',
+        title: 'Whiskey',
+        damage: 3,
+    },
+
+    {
+        img: 'https://i0.wp.com/ae01.alicdn.com/kf/HTB1J3tZdBDH8KJjy1zeq6xjepXar/-Two-pieces-lot-Aquafina-Water-Bottle-Diversion-Safe-Can-Stash-Bottle-Hidden-Security-container.jpg?crop=6,3,950,600&quality=3886',
         title: 'Water',
         damage: 0,
     },
 
     {
-        img: 'https://image.shutterstock.com/image-illustration/cartoon-england-elements-set-on-600w-333033137.jpg',
-        title: 'London Drink',
+        img: 'https://cdna.artstation.com/p/assets/images/images/013/933/906/large/igor-borisenko-red-packshot.jpg?1541716476',
+        title: 'Wine',
         damage: 1,
     },
 
     {
-        img: 'https://previews.123rf.com/images/miceking/miceking1604/miceking160400018/54822330-beer-mug-cartoon-with-foam.jpg',
+        img: 'https://www.3dfluff.com/wp-content/uploads/beer2.jpg',
         title: 'Beer',
         damage: 1,
     },
 
     {
-        img: 'https://cdn2.vectorstock.com/i/thumb-large/27/56/bottle-vodka-icon-cartoon-style-vector-7722756.jpg',
+        img: 'https://images.pond5.com/absolut-vodka-3d-090609734_iconl.jpeg',
         title: 'Vodka',
         damage: 2,
     },
 
     {
-        img: 'https://image.shutterstock.com/image-vector/vector-cartoon-illustration-tequila-bottle-260nw-1414483793.jpg',
+        img: 'https://www.absinthes.com/media/image/f6/4d/2e/tequila-villa-lobos-blanco-tequila-40-0-7l-18954-1117619dIP4Edq1vePC_1280x1280.jpg',
         title: 'Tequila',
         damage: 4,
     },
@@ -218,7 +218,7 @@ $(function () {
             <div class="flip-card-back">
             <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
+            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-guitar little-guitar"></i>
             </div>
             </div>
             </div>`);
@@ -236,7 +236,7 @@ $(function () {
             <div class="flip-card-back">
             <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
+            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-drum"></i>
             </div>
             </div>
             </div>`);
@@ -257,7 +257,7 @@ $(function () {
 
     const addMessage = function () {
         if (playerCurrentCard.damage < cpuCurrentCard.damage) {
-            $('#board-messages').append(`<br><p class="h1 slideIn"><strong>The opponent beats ${$playerInput.val()} this round</p>`)
+            $('#board-messages').append(`<p class="h1 slideIn"><strong>The opponent beats ${$playerInput.val()} this round</p>`)
         } else if (playerCurrentCard.damage > cpuCurrentCard.damage) {
             $('#board-messages').append(`<br><p class="h1 slideIn">${$playerInput.val()} wins this round!</p>`)
 

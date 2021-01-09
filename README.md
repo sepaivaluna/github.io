@@ -1,11 +1,18 @@
 # Led Zeppelin Game
 
+
 ## Concept: 
 <p>Game begins by displaying the title, and two buttons which you can select from. You can also select to play some music if you would like to make this game experience more fun</p>
 <p>Clicking on the "Let's Play" button will initialize this game, which will then prompt you an input for you to type your name. <strong><em>WARNING!</em></strong> You must type a name. If you don't have one then make one up.</p>
 <p>Once you've got that down, you will be directed to click a couple more buttons before reaching the 'How To Play' screen. On this screen you will see what the winning conditions and also learn a bit more about the cards.</p>
 <p>The button on the instructions will then move you to the main game board, and this is where the cards are dealt.</p>
 <p>First person to lose their life loses. At the end you will be prompted to reset the board which will take you to the start of the game.</p>
+
+## Wireframes:
+
+![screenshot](README-images/main-page.png)
+![screenshot](README-images/how-to-play.png)
+![screenshot](README-images/gameboard.png)
 
 ## Technologies Used:
     - HTML
