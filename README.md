@@ -1,7 +1,6 @@
 # Led Zeppelin Game
 
 ## Concept: 
-<p>This game was inspired by the game: "<em>The Red Dragon Inn</em>"</p>
 <p>Game begins by displaying the title, and two buttons which you can select from. You can also select to play some music if you would like to make this game experience more fun</p>
 <p>Clicking on the "Let's Play" button will initialize this game, which will then prompt you an input for you to type your name. <strong><em>WARNING!</em></strong> You must type a name. If you don't have one then make one up.</p>
 <p>Once you've got that down, you will be directed to click a couple more buttons before reaching the 'How To Play' screen. On this screen you will see what the winning conditions and also learn a bit more about the cards.</p>
@@ -18,18 +17,27 @@
     - FontAwesome
 
 ## Approach: 
-<p>The approach I used to make this game was a sequence of <em>Pseudocode, CSS, and JQuery</em>. I began writing out all the plans I had to make this game and the daily goals I set myself for completing it.
+<p>The approach I used to make this game was a sequence of <em>Pseudocode, CSS, and JQuery</em>. I began writing out all the plans I had to make this game work and the daily goals I set myself for completing it.<br>
 
-First, by building the layout with CSS first (with the immense help of Bootstrap), I managed to give myself a good head start into my project. Then, once I had most of my layout completed I began introducing eventListeners for buttons. As I progressed through my project I editted things such as the turns and how the health/alcohol meter would change as the game went on.
+First, by building the layout with CSS and with Bootstrap, I managed to give myself a good head start into my project. Then, once I had most of my layout completed I began introducing eventListeners for buttons that would show and hide elements that I already had.<br>
 
-Finally, </p>
+Then, I added all of the card information and saved it into an object with the three main characteristics of all cards. This helped for calling a random card with attributes that pertained to that one card.<br>
+
+Next, I appended information to empty tags (divs, p, h2) that were placed on my HTML page based on the results of the user response to the button clicked.<br>
+
+Finally, I introduced a main menu/reset button which would take the user back to the original page whilst playing the music.</p>
 
 
 ## Challenges: 
-<p>The greatest challenges that I came accross were how to make a game that would interact well with</p>
+<p>The greatest challenges that I came accross were how to make a game that would interact well with different screen sizes. The game works best on a desktop screen.<br>
+I also had many problems with the reset button due to it not replacing the information that I needed it to replace.<br>
+Finally, I had issues with the cards not staying in one place when flipping, they seem to want to edge about a millimeter to the left when hovered over.</p>
 
 ## Additional information:
-Add anything else you would like us to know 
+<p>For now this game is a 1 vs. CPU game, but in the future it will be made to interact with two or more players.<br>
+
+Never drink and drive but gaming and driving... hmm. Who can resist?
+</p>
 
 ## App Demo 
-[Led Zeppelin Drinking Game](http://127.0.0.1:5500/game.html#)
+[Led Zeppelin Game](http://127.0.0.1:5500/game.html#)
