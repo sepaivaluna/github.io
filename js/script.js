@@ -117,7 +117,7 @@ $(function () {
     }
     
     // NOTE when the player clicks on reset
-    const restartGame = function () {
+    const restart = function () {
         
         // resetGame = true;
         $introToGame.hide();
@@ -143,6 +143,11 @@ $(function () {
         $('#lose-overlay').hide();
         // checkRestart();
     }
+
+    $("#win-reset-container").delegate($resetButton, "click", restart)
+    $("#lose-reset-container").delegate($resetButton, "click", restart)
+    $("#reset-2").delegate($resetButton, "click", restart)
+    $($resetButton).on('click', restart);
     
     // NOTE when the player clicks on "let's play"
     const letsPlay = function () {
@@ -193,7 +198,6 @@ $(function () {
         
         The opponent's was worth ${cpuDamage}!<br>
         
-
         </p>`)
         addMessage();
         checkDamage();
@@ -315,9 +319,4 @@ $(function () {
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
     $('#how-to-2').on('click', helpButton);
-    $resetButton.on('click', restartGame);
-
 });
-
-
-
