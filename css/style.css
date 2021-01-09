@@ -244,12 +244,16 @@ meter::-webkit-meter-sub-sub-optimum-value {
     flex-direction: column;
     justify-content: center;
     min-width: 500px;
-    min-height: 500px;
-    /* max-width: 500px; */
+    min-height: 650px;
     background-image: url('https://cdn3.vectorstock.com/i/thumb-large/54/12/watercolor-white-stripes-background-on-gray-vector-16395412.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
+}
+
+.fa-guitar {
+    font-size: 125px;
+    color: red;
 }
 
 .howto-text {
@@ -344,7 +348,7 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
   }
   
   .flip-card-back {
-    background-image: linear-gradient(to top right, rgba(255, 0, 0, 0.9), rgba(255, 166, 0, 0.9), rgba(255, 255, 0, 0.9), rgba(0, 128, 0, 0.9), rgba(0, 0, 255, 0.9));
+    background-image: linear-gradient(to top, rgba(34, 193, 195, .9), rgba(253, 187, 45, .9));
     color: white;
     transform: rotateY(180deg);
   }
@@ -353,18 +357,15 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
       display: flex;
   }
 
-/* give credits to css-tricks https://css-tricks.com/snippets/css/typewriter-effect/*/
-
 .slideIn {
     overflow: hidden; 
-    white-space: normal; /*Keeps the content on a single line*/
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    white-space: normal;
+    margin: 0 auto;
     letter-spacing: .15em; 
     position: relative;
     animation: 
-    slidein 2s;
+    slidein 2.25s;
     line-height: 150%;
-    /* blink-caret .5s step-end 10; */
 }
   
   @keyframes slidein {

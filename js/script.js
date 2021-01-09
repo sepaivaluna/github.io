@@ -83,8 +83,6 @@ $(function () {
     
     // NOTE the first thing to popup when window loads
     gameStart();
-    
-    // give credit to: https://www.youtube.com/watch?v=iIP4xss_jeQ for buttons
 
     $('.fa-pause-circle').hide();
 
@@ -184,6 +182,7 @@ $(function () {
         $gameBoard.show();
         $('.deal-cards').show();
         $resetButton.show();
+        $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">Click on the 'Drink' button below to display your first cards!</p>`)
     }
     
     $('.deal-cards').on('click', function() {
@@ -195,13 +194,13 @@ $(function () {
         newCard();
         cpuCard();
         
-        newMessage = $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">LOOKOUT! <br><br>
+        newMessage = $('#board-messages').append(`
+        <p class="slideIn h1 fw-bold" style="margin-top: 10px;">WATCHOUT!</p>
         
-        ${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!<br>
+        <p class="slideIn h1" style="margin-top: 10px;">${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!</p>
         
-        The opponent's was worth ${cpuDamage}!<br>
-        
-        </p>`)
+        <p class="slideIn h1" style="margin-top: 10px;">The opponent's was worth ${cpuDamage}!</p>
+       `)
         addMessage();
         checkDamage();
         winCondition();
@@ -219,7 +218,7 @@ $(function () {
             <div class="flip-card-back">
             <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h4" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
+            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
             </div>
             </div>
             </div>`);
@@ -237,7 +236,7 @@ $(function () {
             <div class="flip-card-back">
             <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h4" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
+            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
             </div>
             </div>
             </div>`);
