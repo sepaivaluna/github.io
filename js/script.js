@@ -271,14 +271,16 @@ $(function () {
             $('#lose-overlay').show();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
             $('#lose-reset-container').empty();
-            $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#lose-reset-container');
+            $('<button class="reset-button btn btn-lg btn-danger">RESET</button>').appendTo('#lose-reset-container');
+            $('.deal-cards').disabled()
             
         } else if (opponentCurrentHealth === 0) {
             $('#board-messages').empty();
             $('#win-overlay').show();
             $('#win-reset-container').empty();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
-            $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#win-reset-container')
+            $('<button class="reset-button btn btn-lg btn-danger">RESET</button>').appendTo('#win-reset-container')
+            $('.deal-cards').disabled()
 
         }
     }
@@ -295,7 +297,7 @@ $(function () {
             $('#intro-text').hide();
             $('#no-input').empty();
             $('#player-name').append(`${$playerInput.val()}`)
-            $('#healthBar-name').append(`${$playerInput.val()}'s Drunkness`)
+            $('#healthBar-name').append(`${$playerInput.val()}'s Sobriety`)
             $($playerInput).hide();
             $($enterButton).hide();
             $('#answer-buttons').show();
@@ -318,7 +320,7 @@ $(function () {
         $('#answer-buttons').hide();
         $('#reset-2').empty();
         $('#reset-2').show();
-        $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#reset-2');
+        $('<button class="reset-button btn btn-lg btn-danger">RESET</button>').appendTo('#reset-2');
         $('#some-input').empty()
     })
 

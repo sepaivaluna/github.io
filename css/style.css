@@ -72,18 +72,25 @@ div {
 .players {
     font-size: 3.5rem;
     margin: 35px;
-    background-color: rgba(200, 200, 200, 0.473);
+}
+
+.players:hover {
+    background-color: white;
+    color: gold;
+}
+
+.deal-cards:hover {
+    background-color: black;
+    color: gold;
 }
 
 .reset-button, .deal-cards {
     font-size: 2rem;
     margin: 35px;
-    background-color: rgba(200, 200, 200, 0.582);
 }
-#help-button:hover, #reset-button:hover, .deal-cards:hover{
-    font-size: 2.2rem;
-    margin: 35px;
-    background-color: rgba(200, 200, 200, 0.582);
+
+#help-button-2 {
+    font-size: 3rem;
 }
 
 input {
@@ -228,9 +235,23 @@ meter::-webkit-meter-sub-sub-optimum-value {
     font-size: 2rem;
 }
 
-#exit-button:hover {
+#exit-button:hover, .reset-button:hover {
     color: red;
     background-color: white;
+}
+
+.fa-laugh-wink {
+    font-size: 100px;
+    color: gold;
+}
+
+.fa-frown {
+    font-size: 100px;
+    color: rgb(34, 34, 209)
+}
+
+ul#social-media li {
+    display: inline;
 }
 
 
@@ -289,6 +310,11 @@ span.text-primary, span.text-danger, span.text-success, u.text-warning {
 
 .music-btn:hover {
     opacity: 1;
+}
+
+.credits-button:hover {
+    background-color: white;
+    color: green;
 }
 
 .fa-pause-circle {
