@@ -7,7 +7,7 @@ const CARDS = [
 
     {
         img: "https://i.pinimg.com/originals/b3/86/0b/b3860b7fcd969ca8c008c20d97d3c4ec.jpg",
-        title: 'Jimmy Page Jug',
+        title: 'Jimmy Page',
         damage: 5,
     },
 
