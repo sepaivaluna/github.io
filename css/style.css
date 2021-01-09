@@ -31,6 +31,7 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100vw;
+    border-radius: 3rem;
 }
 
 #health {
@@ -67,6 +68,7 @@ div {
 
 .btn {
     font-size: 2rem;
+    border-radius: 2rem;
 }
 
 .players {
@@ -256,7 +258,7 @@ ul#social-media li {
     justify-content: center;
     min-width: 500px;
     min-height: 650px;
-    background-image: url('https://cdn3.vectorstock.com/i/thumb-large/54/12/watercolor-white-stripes-background-on-gray-vector-16395412.jpg');
+    background-image: url('https://c0.wallpaperflare.com/preview/242/382/519/jesus-god-holy-spirit-bible.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
