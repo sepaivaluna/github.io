@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- NOTE Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -12,87 +13,93 @@
 
     <!-- NOTE Main CSS -->
     <link rel="stylesheet" href="./css/style.css">
-
+    
     <!-- NOTE jQuery JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    
     <!-- for Bootstrap JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+    
+    <!-- NOTE Font Awesome JS -->
+    <script src="https://kit.fontawesome.com/beb730ba02.js" crossorigin="anonymous"></script>
 
     <!-- NOTE Main JS -->
     <script defer src="./js/script.js"></script>
-    <title>Led Zeppelin Drinking Game</title>
+    <title>Led Zeppelin Game</title>
 </head>
 
 
 <body>
     <div id="title" class="text-center">
-        <h1 id="game-name" class="font-effect-3d-float font-effect-anaglyph display-2">THE LED ZEPPELIN DRINKING GAME</h1>
+        <h1 id="game-name" class="font-effect-3d-float font-effect-anaglyph display-2">THE LED ZEPPELIN GAME</h1>
     </div>
     
     <div id="main-game-div" class="d-flex justify-content-center"> 
-        <div id="button-div" class="d-flex flex-column justify-content-center">
-            <button id="lets-play" class="btn btn-lg btn-outline-warning players">Let's Play</button>
+        <div id="button-div" class="d-flex flex-column justify-content-center align-items-center">
+            <button id="lets-play" class="btn btn-lg btn-outline-warning players" style="margin-bottom: 50px;">Let's Play</button>
+            <button class="credits-button btn btn-lg btn-success" style="font-size: 3rem; margin: 0;" style="margin-bottom: 50px;">Credits</button>
+            <div class="bg-music" style="margin-top: 50px;">
+                <audio id="myMysic" src="over-the-hills.mp3" loop=""></audio>
+                <button class="music-btn">
+                    <i class="fas fa-play-circle"></i>
+                    <i class="fas fa-pause-circle"></i>
+                </button>
+            </div>
         </div>
         
+        
         <div id="player-one-board" class="game-board container board" style="position:relative">
-            <p id="player-name" style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter; width: 500px; margin-left: 143px;"></p> 
+            <p id="player-name" style="margin-top: 4px;font-size: 2rem;background-color: rgba(0,0,0,.8); color:white; font-weight:lighter; width: 500px;"></p> 
 
             <div id="p1-cards" style="justify-content: center;"></div>
 
-            <div id="health" class="container" style="background-color: rgba(225,200,200,.5); position: absolute; bottom: 10px; left: 50px; width: 650px;">
-                <p id="healthBar-name" class=h4></p>
-                <meter id="player-health-remaining" value="20" min="0" max="20" style="width: 100%; height: 40px;"></meter>
+            <div id="health" class="container">
+                <p id="healthBar-name" class="h3" style="color: black;"><i class="fas fa-beer"><strong></strong></i></p>
+                <meter id="player-health-remaining" value="20" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>
             </div>
         </div>
         
         <div id="board-messages" class="game-board container board" style="position: relative;">
-            
+    
         </div>
         
         <div id="player-two-div" class="game-board container board" style="position: relative;">
-            <p style="margin-top: 4px;font-size: 2rem;background-color: rgba(200,200,200,0.582); color:white; font-weight:lighter; width: 500px; margin-left: 143px;">CPU</p>
+            <p style="margin-top: 4px;font-size: 2rem;background-color: rgba(0,0,0,.8); color:white; font-weight:lighter; width: 500px;">CPU</p>
             
             <div id="p2-cards" style="justify-content: center;"></div>
     
-            <div id="health" class="container" style="background-color: rgba(225,200,200,.5); position: absolute; bottom: 10px; left: 75px; width: 650px;">
-                <p class="h4">Opponent's Drunkness</p>
-                <meter id="opponent-health-remaining" value="20" min="0" max="20" style="width: 100%; height: 40px;"></meter>
-             </div>
+            <div id="health" class="container">
+                <p id="cpu-drunkness-text"class="h3" style="color: black;"><i class="fas fa-beer"></i><strong>Opponent's Drunkness</strong></p>
+                <meter id="opponent-health-remaining" value="20" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>
+            </div>
         </div>
-
-        
     </div>
-    
+
     <div id="reset" class="d-flex justify-content-center">
-        <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
-        <button id="help-button" class="btn btn-lg btn-outline-success help-button">How to play</button>
-        <button class="btn btn-md btn-outline-warning deal-cards">Deal Cards</button>
-        </p>
-
+        <button class="reset-button btn btn-lg btn-outline-danger">RESET</button>
+        <button class="btn btn-md btn-outline-warning deal-cards">DRINK</button>
     </div>
-
 
     <div id="introduction-to-game" class="text-center display-5" style="margin: 10px; line-height: 200%;">
-        <div >
+        <div>
             <div class="slideIn">
                 <div>
                     <div id="intro-text">
-                        Hey! I'm Serg, the bar owner, it seems like this is your first time here, what's your name?
+                        Hey! I'm Thanos, the bar owner, it seems like this is your first time here, what's your name?
                     </div>
 
                     <div id="answer-buttons">
                         <div>
-                            <button id="sure-button" class="btn btn-lg btn-outline-success">Yes</button>
-                            <button id="nahh-button" class="btn btn-lg btn-outline-danger">Nahh</button>
+                            <button id="yes-button" class="btn btn-lg btn-outline-success">Yes</button>
+                            <button id="no-button" class="btn btn-lg btn-outline-danger">No</button>
                         </div>
                     </div>
-                    <div id="reset-2">
-                        <button id="reset-button-2" class="btn btn-lg btn-outline-danger">RESET</button>
-                    </div>
+
+                    <div id="reset-2" style="justify-self: center; align-self: center; font-size: 2rem;"></div>
+
                     <div id="how-to-2">
                         <button id="help-button-2" class="btn btn-lg btn-outline-success help-button">Next</button>
                     </div>
@@ -115,30 +122,30 @@
         <br><br>
         
         <div class="row justify-content-around" style="position: absolute;">
-            <div id="first-col" class="howto-text h2 col-3">You and your opponent will both begin with a full <span class="text-danger">Sobriety</span> meter. Your meter will reflect your life.Whoever's meter drops to zero first, LOSES <br><br>
+            <div id="first-col" class="howto-text h2 col-3">You and your opponent will both begin with a full <span class="text-danger">Sobriety</span> meter. Your meter will reflect your life. Whoever's meter drops to zero first, LOSES <br><br>
                 
-                <p class="h2" style="margin:0; color: rgba(255, 255, 0, 0.863)">Full health</p>
-                <div style="border: 1px solid red; padding: 20px; margin-bottom: 30px;">
+                <p class="h2" style="margin:0; color: rgba(255, 255, 0, 0.863)">Sober</p>
+                <div id="boxes" style="">
                     <p class="h4">Luca's Sobriety</p>
-                    <meter value="20" min="0" max="20" style="width: 100%; height: 40px;"></meter>    
+                    <meter value="20" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>    
                 </div>
                 <p class="h3" style="margin:0; color: rgba(255, 255, 0, 0.863)">Half-drunk</p>
-                <div style="border: 1px solid red; padding: 20px; margin-bottom: 30px;">
+                <div id="boxes" style="">
                     <p class="h4">Luca's Sobriety</p>
-                    <meter value="10" min="0" max="20" style="width: 100%; height: 40px;"></meter>    
+                    <meter value="10" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>    
                 </div>
-                <p class="h3" style="margin:0; color: rgba(255, 255, 0, 0.863)">Passed out</p>
-                <div style="border: 1px solid red; padding: 20px">
+                <p class="h3" style="margin:0; color: rgba(255, 255, 0, 0.863)">Drunk</p>
+                <div id="boxes" style="">
                     <p class="h4">Luca's Sobriety</p>
-                    <meter value="0" min="0" max="20" style="width: 100%; height: 40px;"></meter>    
+                    <meter value="2" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>    
                 </div>
             </div>
              
             <div id="second-col" class="howto-text h2 col-5" style="padding: 0">    
-                The way the damage is handled depends on your card's value. If your card's value is greater than your opponents than you the damage! Likewise if theirs is greater you receive it
-                For example this could be your card (Hint: <u class="text-warning">hover</u> over it):
+                The way the damage is handled depends on your card's value. If your card's value is greater than your opponents' card than you do the damage! Likewise, if theirs is greater then you receive it.<br>
+                Example of cards: (Hint: <u class="text-warning">hover</u> over them):
                 <br>
-                <div class="d-flex" style="margin: 4px">
+                <div class="d-flex justify-content-center">
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
@@ -164,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flip-card" style="position:relative">
+                    <!-- <div class="flip-card" style="position:relative">
                         <div class="flip-card-inner">
                             <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233)">
                                 <img src="https://i.pinimg.com/originals/b3/86/0b/b3860b7fcd969ca8c008c20d97d3c4ec.jpg" alt="Jimmy Page Jug" style="width:300px;height:400px;">
@@ -175,7 +182,7 @@
                                 <p id="player-damage-value" class="h2">This card has a value of 4!</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 
                 
@@ -185,11 +192,14 @@
             </div>
             
             <div id="third-col" class="howto-text h2 col-3">
-                Once you select your card your turn is over and it's your opponent's turn. The objective of the game is to get your opponent's Health to zero. Once that happens the game ends!
+                <div style="margin-bottom: 50px;">This is a game of luck, will you stay sober or pass out? Let's find out!
+                </div>
+                <p class="display-2 font-effect-anaglyph" style="margin-bottom: 60px;">Try your luck:</p>
                 <!-- The game will begin as soon as you click <span class="text-success">Deal Cards</span>  -->
+                <p><i class="fas fa-angle-double-down"></i></p>
                 
                 
-                <div style="margin: 100px;">
+                <div style="margin: 40px;">
                     <button id="exit-button" class="btn btn-lg btn-danger font-effect-3d-float width-cover">PLAY NOW!</button>
                 </div>
                 
@@ -204,18 +214,44 @@
         <div class="display-2">YOU LOSE! 
         </div>
         <p class="display-3">Now pay me back for the free drinks!</p>
-        <div>
-            <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
+        <div id="lose-reset-container">
         </div>
     </div>
     
     <div id="win-overlay" style="margin-top: 10px; display: none">
         <div class="display-2">YOU WIN! 
         </div>
-        <p class="display-3">You are ready for the big boy club!</p>
-        <div>
-            <button id="reset-button" class="btn btn-lg btn-outline-danger">RESET</button>
+        <p class="display-3">You are ready for the big kid club!</p>
+        <div id="win-reset-container">
         </div>
+    </div>
+
+    <div id="credits" style="margin-top: 10px; display: none">
+            <div class="display-2"><u>Credits</u>
+            </div>
+            <article>
+                <h1 class="text-center">About me:</h1>
+                <p class="h4 text-center" style="margin: 50px 0 0 0; padding: 0 400px 0 400px; line-height: 150%;">Full-stack software engineer with a passion for problem solving, creating original content, and developing fun applications. Originally born and raised in Peru, and moved to America young. I believe I have the background to work on diverse projects and have the experience to help with creativity. This game was greatly inspired by my strong passion for 'Rock and Roll' and by the infinite possibilities of card games.</p>
+            </article>
+            <article>
+                <h1 class="text-center">About this game:</h1>
+                <p class="h4 text-center" style="margin: 50px 0 0 0; padding: 0 400px 0 400px; line-height: 150%;">This game was very fun to make, it required me to research pictures of Led Zeppelin and even songs to add the right one to the background. As a lover of board games I knew that this project needed cards to be dealt.</p>
+            </article>
+            <article>
+                <h1 class="text-center">Helpful Sources:</h1>
+                <p class="h4" style="margin: 50px 0 0 0; padding: 0 400px 0 400px; line-height: 150%;">These are a few of the websites that helped me get throught this project smoothly: 
+                    <ul class="text-center h5" style="list-style-type: none; line-height: 150%;">
+                        <li><a href="www.w3schools.com" target="_blank">www.w3schools.com</a></li>
+                        <li><a href="https://css-tricks.com/" target="_blank">https://css-tricks.com/</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=iIP4xss_jeQ" target="_blank">www.youtube.com</a></li>
+                        <li><a href="https://stackoverflow.com/" target="_blank">https://stackoverflow.com/</a></li>
+                    </ul>
+                </p>
+            </article>
+
+            <div>
+                <button class="credits-button btn btn-md btn-danger" style="font-size: 2rem; margin: 0;" style="margin-bottom: 50px;">Back</button>
+            </div>
     </div>
     
 </body>

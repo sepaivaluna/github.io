@@ -1,7 +1,8 @@
-# Led Zeppelin Drinking Game
+# Led Zeppelin Game
 
 ## Concept: 
 <p>This game was inspired by the game: "<em>The Red Dragon Inn</em>"</p>
+<p>Game begins by selecting the 
 
 <br>
 
@@ -11,11 +12,12 @@
 
 
 ## Technologies Used:
-    - HTML5
+    - HTML
     - CSS 
     - JavaScript
     - JQuery
     - Bootstrap 5.0
+    - MockFlow
 
 ## Approach: 
 <p>The approach I used to make this game was a sequence of <em>Pseudocode, CSS, and JQuery</em>. I began writing out all the plans I had to make this game and the daily goals I set myself for completing it.

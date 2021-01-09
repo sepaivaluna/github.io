@@ -61,7 +61,7 @@ const CARDS = [
 ]
 const $letsPlay = $('#lets-play');
 const $gameBoard = $('.board');
-const $resetButton = $('#reset-button');
+const $resetButton = $('.reset-button');
 const $helpButton = $('#help-button');
 const $howTo = $('#howTo');
 const $introToGame = $('#introduction-to-game')
@@ -72,20 +72,38 @@ const $opponentHealth = $('#opponent-health-remaining');
 const $enterButton = $('#enter-button');
 let playerCurrentHealth = 20;
 let opponentCurrentHealth = 20;
-let playersDead = false;
 let playerDamage = 0;
 let cpuDamage = 0;
 let newMessage;
 let playerCurrentCard;
 let cpuCurrentCard;
+// let resetGame = false;
 
 $(function () {
     
+    // NOTE the first thing to popup when window loads
     gameStart();
     
-    // NOTE the first thing to popup when window loads
+    // give credit to: https://www.youtube.com/watch?v=iIP4xss_jeQ for buttons
+
+    $('.fa-pause-circle').hide();
+
+    $('.fa-play-circle').on('click', function(){
+        $(this).hide();
+        $('.fa-pause-circle').fadeIn();
+        $('#myMysic')[0].play();
+    })
+    
+    $('.fa-pause-circle').on('click', function(){
+        $(this).hide();
+        $('.fa-play-circle').fadeIn();
+        $('#myMysic')[0].pause();
+    })
+
+    
+    
     function gameStart () {
-        
+    
         $helpButton.hide();
         $introToGame.hide();
         $howTo.hide();
@@ -93,28 +111,15 @@ $(function () {
         $gameBoard.hide();
         $resetButton.hide();
         $letsPlay.show();
-        $('lose-overlay').hide();
-        $('win-overlay').hide();
+        $('#lose-overlay').hide();
+        $('#win-overlay').hide();
         $('.deal-cards').hide();
-        
     }
     
-    // NOTE when the player clicks on "let's play"
-    const letsPlay = function () {
-        
-        $('#how-to-2').hide();
-        $('#reset-2').hide();
-        $('#answer-buttons').hide();
-        $('.deal-cards').show();
-        $introToGame.show();
-        $letsPlay.hide();
-        $resetButton.show();
-        $enterButton.on('click', firstQuestion);
-        secondQuestion();
-    }
-
+    // NOTE when the player clicks on reset
     const restartGame = function () {
-
+        
+        // resetGame = true;
         $introToGame.hide();
         $('#player-name').empty();
         $('#healthBar-name').empty();
@@ -132,8 +137,28 @@ $(function () {
         $resetButton.hide();
         $letsPlay.show();
         $('.deal-cards').hide();
+        $('.bg-music').show();
+        $('.credits-button').show();
+        $('#win-overlay').hide();
+        $('#lose-overlay').hide();
+        // checkRestart();
     }
-
+    
+    // NOTE when the player clicks on "let's play"
+    const letsPlay = function () {
+        
+        $('.bg-music').hide();
+        $('.credits-button').hide();
+        $('#how-to-2').hide();
+        $('#reset-2').hide();
+        $('#answer-buttons').hide();
+        $introToGame.show();
+        $letsPlay.hide();
+    }
+    
+    $('.credits-button').on('click',function(){
+        $('#credits').toggle();
+    })
     
     const helpButton = function () {
         $howTo.show();
@@ -142,10 +167,16 @@ $(function () {
     
     const exitInstruction = function () {
         $howTo.hide();
-        $resetButton.hide();
         $gameBoard.show();
+        $('.deal-cards').show();
+        $resetButton.show();
     }
     
+    // const checkRestart = function () {
+    //     if (resetGame === true) {
+    //         location.reload();
+    //     }
+    // }
     
     $('.deal-cards').on('click', function() {
         
@@ -158,12 +189,13 @@ $(function () {
         
         newMessage = $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">LOOKOUT! <br><br>
         
-        ${$playerInput.val()} got ${playerDamage}!<br>
+        ${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!<br>
         
-        The opponent got ${cpuDamage}!<br>
+        The opponent's was worth ${cpuDamage}!<br>
         
+
         </p>`)
-        
+        addMessage();
         checkDamage();
         winCondition();
     })
@@ -178,9 +210,9 @@ $(function () {
             <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px;">
             </div>
             <div class="flip-card-back">
-            <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
+            <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h4">This card has a value of ${CARDS[card].damage}!</p>
+            <p id="player-damage-value" class="h4" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
             </div>
             </div>
             </div>`);
@@ -196,9 +228,9 @@ $(function () {
             <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px;">
             </div>
             <div class="flip-card-back">
-            <h2 style="padding-top: 20px;"><u>${CARDS[card].title}</u></strong>
+            <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
             </h2>
-            <p id="player-damage-value" class="h4">This card has a value of ${CARDS[card].damage}!</p>
+            <p id="player-damage-value" class="h4" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p>
             </div>
             </div>
             </div>`);
@@ -216,6 +248,15 @@ $(function () {
             $('#board-messages').append(`<p class="h1 slideIn" style="margin-top: 10px;">It's a tie!<br><br>${$playerInput.val()} and opponent got ${playerDamage}</p>`)
         }
     }
+
+    const addMessage = function () {
+        if (playerCurrentCard.damage < cpuCurrentCard.damage) {
+            $('#board-messages').append(`<br><p class="h1 slideIn"><strong>The opponent beats ${$playerInput.val()} this round</p>`)
+        } else if (playerCurrentCard.damage > cpuCurrentCard.damage) {
+            $('#board-messages').append(`<br><p class="h1 slideIn">${$playerInput.val()} wins this round!</p>`)
+
+        }
+    }
     
     const winCondition = function () {
 
@@ -223,20 +264,19 @@ $(function () {
             $('#board-messages').empty();
             $('#lose-overlay').show();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
-            console.log($resetButton)
+            $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#lose-reset-container');
+
         } else if (opponentCurrentHealth === 0) {
             $('#board-messages').empty();
             $('#win-overlay').show();
             $('#board-messages').append(`<p class="slideIn display-4" style="margin-top: 10px;">GAME OVER</p>`)
-            console.log($resetButton)
+            $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#win-reset-container')
+
         }
     }
     
-    
-    
-    
-    
-    const firstQuestion = function() {
+    $enterButton.on('click', function (){
+
         if ($playerInput.val().length === 0) {
             $('#intro-text').empty();
             newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Don't be shy, we won't bite</p>`)
@@ -249,35 +289,31 @@ $(function () {
             $($playerInput).hide();
             $($enterButton).hide();
             $('#answer-buttons').show();
-            $('#reset-button-2').hide();
             
             
-            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Rock on ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
+            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Welcome ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
         }
-    }
+    })
     
-    const secondQuestion = function() {
-        $('#sure-button').on('click', function () {
-            $('#intro-text').empty();
-            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p>`);
-            $('#answer-buttons').hide();
-            $('#how-to-2').show();
-        })
-        
-        $('#nahh-button').on('click', function () {
-            $('#intro-text').empty();
-            newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Come see us anytime<br><br></p>`);
-            $('#answer-buttons').hide();
-            $('#reset-2').show();
-            $('#reset-button-2').show();
-        })
-    }
+    $('#yes-button').on('click', function () {
+        $('#intro-text').empty();
+        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p><br>`);
+        $('#answer-buttons').hide();
+        $('#how-to-2').show();
+    })
     
+    $('#no-button').on('click', function () {
+        $('#intro-text').empty();
+        newMessage = $('#intro-text').append(`<p class="slideIn display-5" style="margin-top: 10px;">Come see us anytime<br><br></p>`);
+        $('#answer-buttons').hide();
+        $('#reset-2').show();
+        $('<button class="reset-button btn btn-lg btn-outline-danger">RESET</button>').appendTo('#reset-2');
+    })
+
     
     $letsPlay.on('click', letsPlay)
     $helpButton.on('click', helpButton);
     $exitButton.on('click', exitInstruction);
-    $('#reset-button-2').on('click', restartGame);
     $('#how-to-2').on('click', helpButton);
     $resetButton.on('click', restartGame);
 
