@@ -32,6 +32,7 @@
     <!-- NOTE Main JS -->
     <script defer src="./js/script.js"></script>
     <title>Led Zeppelin Game</title>
+    <link rel="icon" href="zeppeli-game-icon.jpg" type="image/x-icon">
 </head>
 
 
@@ -60,7 +61,8 @@
             <div id="p1-cards" style="justify-content: center;"></div>
 
             <div id="health" class="container">
-                <p id="healthBar-name" class="h3" style="color: black;"><i class="fas fa-beer font-effect-3d-float"><strong></strong></i></p>
+
+                <p id="healthBar-name" class="h3" style="color: black;"></p>
                 <meter id="player-health-remaining" value="20" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>
             </div>
         </div>
@@ -75,7 +77,7 @@
             <div id="p2-cards" style="justify-content: center;"></div>
     
             <div id="health" class="container">
-                <p id="cpu-drunkness-text"class="h3" style="color: black;"><i class="fas fa-beer font-effect-3d-float"></i><strong>Opponent's Sobriety</strong></p>
+                <p id="cpu-drunkness-text"class="h3" style="color: black;"><i class="fas fa-beer font-effect-3d-float"></i>Opponent's Sobriety</p>
                 <meter id="opponent-health-remaining" value="20" min="0" max="20" high="16" low="6" optimum="20" style="width: 100%; height: 40px;"></meter>
             </div>
         </div>

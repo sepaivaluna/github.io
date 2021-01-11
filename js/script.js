@@ -203,7 +203,7 @@ $(function () {
        `)
         addMessage();
         checkDamage();
-        winCondition();
+        winCondition(); 
     })
 
     const newCard = function () {
@@ -295,7 +295,7 @@ $(function () {
             $('#intro-text').hide();
             $('#no-input').empty();
             $('#player-name').append(`${$playerInput.val()}`)
-            $('#healthBar-name').append(`${$playerInput.val()}'s Sobriety`)
+            $('#healthBar-name').append(`<i class="fas fa-beer font-effect-3d-float"></i>${$playerInput.val()}'s Sobriety`)
             $($playerInput).hide();
             $($enterButton).hide();
             $('#answer-buttons').show();
