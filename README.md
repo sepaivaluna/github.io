@@ -36,7 +36,7 @@ Finally, I introduced a main menu/reset button which would take the user back to
 
 
 ## Challenges: 
-<p>The greatest challenges that I came accross were how to make a game that would interact well with different screen sizes. The game works best on a desktop screen.</p>
+<p>The greatest challenges that I came across were how to make a game that would interact well with different screen sizes. The game works best on a desktop screen.</p>
 <p>I also had many problems with the reset button due to it not replacing the information that I needed it to replace.</p>
 <p>Finally, I had issues with the cards not staying in one place when flipping, they seem to want to edge about a millimeter to the left when hovered over.</p>
 
