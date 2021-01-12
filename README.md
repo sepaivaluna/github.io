@@ -47,4 +47,4 @@ Never drink and drive by the way!
 </p>
 
 ## App Demo 
-[Led Zeppelin Game](http://127.0.0.1:5501/game.html)
+[Led Zeppelin Game](https://sepaivaluna.github.io/game.html)
