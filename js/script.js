@@ -182,7 +182,7 @@ $(function () {
         $gameBoard.show();
         $('.deal-cards').show();
         $resetButton.show();
-        $('#board-messages').append(`<p class="slideIn h1" style="margin-top: 10px;">Click on the 'Drink' button below to display your first cards!</p>`)
+        $('#board-messages').append(`<p class="slideIn h3" style="margin-top: 10px;">Click on the 'Drink' button below to display your first cards!</p>`)
     }
     
     $('.deal-cards').on('click', function() {
@@ -195,11 +195,11 @@ $(function () {
         cpuCard();
         
         newMessage = $('#board-messages').append(`
-        <p class="h1 fw-bold" style="margin-top: 10px;">WATCHOUT!</p>
+        <p class="h1 fw-bold" style="margin-top: 10px;">WATCHOUT!</p><br>
         
-        <p class="h1" style="margin-top: 10px;">${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!</p>
+        <p class="h4" style="margin-top: 10px;">${$playerInput.val()}'s drink was worth ${playerDamage} alcohol!</p><br>
         
-        <p class="h1" style="margin-top: 10px;">The opponent's was worth ${cpuDamage}!</p>
+        <p class="h4" style="margin-top: 10px;">The opponent's was worth ${cpuDamage}!</p><br>
        `)
         addMessage();
         checkDamage();
@@ -213,12 +213,12 @@ $(function () {
         $('#p1-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
             <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233); border-radius: 5rem;">
-            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px; border-radius: 5rem;">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:200px;height:300px; border-radius: 5rem;">
             </div>
             <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(116, 134, 233); border-radius: 5rem;">
-            <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
-            </h2>
-            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-guitar little-guitar font-effect-anaglyph"></i>
+            <h3 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
+            </h3>
+            <p id="player-damage-value" class="h3" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-guitar little-guitar font-effect-anaglyph"></i>
             </div>
             </div>
             </div>`);
@@ -231,12 +231,12 @@ $(function () {
         $('#p2-cards').append(`<div class="flip-card" style="position:relative">
             <div class="flip-card-inner">
             <div class="flip-card-front" style="box-shadow: 0 14px 28px 0 rgb(255, 44, 37); border-radius: 5rem;">
-            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:300px;height:400px; border-radius: 5rem;">
+            <img src="${CARDS[card].img}" alt="${CARDS[card].title}" style="width:200px;height:300px; border-radius: 5rem;">
             </div>
             <div class="flip-card-back" style="box-shadow: 0 14px 28px 0 rgb(255, 44, 37); border-radius: 5rem;">
-            <h2 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
-            </h2>
-            <p id="player-damage-value" class="h2" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-drum font-effect-anaglyph"></i>
+            <h3 style="padding-top: 20px; color: black;"><u>${CARDS[card].title}</u></strong>
+            </h3>
+            <p id="player-damage-value" class="h3" style="color: black; padding-top: 20px;">This card has a value of ${CARDS[card].damage}!</p><i class="fas fa-drum font-effect-anaglyph"></i>
             </div>
             </div>
             </div>`);
@@ -251,15 +251,15 @@ $(function () {
             $opponentHealth.attr('value', opponentCurrentHealth)
         } else if (cpuCurrentCard.damage === playerCurrentCard.damage) {
             $('#board-messages').empty();
-            $('#board-messages').append(`<p class="h1 slideIn" style="margin-top: 10px;">It's a tie!<br><br>${$playerInput.val()} and opponent got ${playerDamage}</p>`)
+            $('#board-messages').append(`<p class="h3 slideIn" style="margin-top: 10px;">It's a tie!<br><br>${$playerInput.val()} and opponent got ${playerDamage}</p>`)
         }
     }
 
     const addMessage = function () {
         if (playerCurrentCard.damage < cpuCurrentCard.damage) {
-            $('#board-messages').append(`<p class="h1"><strong>The opponent beats ${$playerInput.val()} this round</p>`)
+            $('#board-messages').append(`<p class="h3">The opponent beats ${$playerInput.val()} this round</p>`)
         } else if (playerCurrentCard.damage > cpuCurrentCard.damage) {
-            $('#board-messages').append(`<br><p class="h1">${$playerInput.val()} wins this round!</p>`)
+            $('#board-messages').append(`<br><p class="h3">${$playerInput.val()} wins this round!</p>`)
 
         }
     }
@@ -300,13 +300,13 @@ $(function () {
             $($enterButton).hide();
             $('#answer-buttons').show();
             
-            $('#some-input').append(`<p class="slideIn display-5" style="margin-top: 10px;">Welcome ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
+            $('#some-input').append(`<p class="slideIn display-6" style="margin-top: 10px;">Welcome ${$playerInput.val()}! We have a special game just for newbies like you, are you interested? <br><br></p>`)
         }
     })
     
     $('#yes-button').on('click', function () {
         $('#intro-text').hide();
-        $('#yes-answer').append(`<p class="slideIn display-5" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p><br>`);
+        $('#yes-answer').append(`<p class="slideIn display-6" style="margin-top: 10px;">Great! Let's begin by going over the instructions</p><br>`);
         $('#answer-buttons').hide();
         $('#how-to-2').show();
         $('#some-input').empty()
@@ -314,7 +314,7 @@ $(function () {
     
     $('#no-button').on('click', function () {
         $('#intro-text').hide();
-        $('#no-answer').append(`<p class="slideIn display-5" style="margin-top: 10px;">Come see us anytime</p><br>`);
+        $('#no-answer').append(`<p class="slideIn display-6" style="margin-top: 10px;">Come see us anytime</p><br>`);
         $('#answer-buttons').hide();
         $('#reset-2').empty();
         $('#reset-2').show();
